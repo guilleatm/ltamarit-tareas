@@ -1,4 +1,4 @@
-﻿|![ref1]|<p>**DHCP. Configurar S. DHCP**</p><p>ACTIVIDADES OBLIGATORIA</p>|
+﻿|![ref1]|<p>**DHCP. Configurar S. DHCP**</p><p>ACTIVIDADES OBLIGATORIAS</p>|
 | - | - |
 
 **ACTIVIDAD  1**
