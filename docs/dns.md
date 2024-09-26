@@ -53,7 +53,59 @@ Con file especifico el fichero que contiene los datos de la zona
 Ahora tenemos que crear los archivos de la zona:
 
 Para crear los archivos de zona nos copiaremos el archivo de zona db.empty:
-
+```
 cp /etc/bind/db.empty /etc/bind/sercamp.org.db
-
 cp /etc/bind/db.empty /etc/bind/db.20.168.192
+```
+### PASO 4. Creación de las zonas.
+
+Vamos a tener los siguientes FQDN:  
+- El servidor DNS con la IP que tiene el servidor 192.168.20.5 se llama dns.sercamp.org
+- El servidor web llamado www.sercamp.org con la IP: 192.168.20.10. Es un servidor ficticio que de momento no existe.
+- Un servidor ftp que se llame ftp.sercamp.org y que está también en 192.168.20.10 (esto es ficticio)
+- Servidor para recibir los correos que se llama mail.sercamp.org y que está en 192.168.20.11 (esto es ficticio)
+
+Además queremos nombrar a tres clientes:  
+- aula5pc2.sercamp.org (192.168.20.202) (ficticio)
+- aula5pc3.sercamp.org (192.168.20.203) (ficticio)
+- aula5pc4.sercamp.org (192.168.20.204) (ficticio)
+
+Recuerda: Con el atributo CNAME especificamos un alias para la dirección 192.168.20.10 (la misma IP que tenga el servidor www), que atenderá a los nombres: www y ftp.
+
+#### Vamos a crear la zona directa
+
+Editamos el archivo /etc/bind/sercamp.org.db para definir todos los registros. Este ejemplo está incompleto, sólo es una referencia, debes completarlo con todos los registros. (Al servidor lo he llamado “dns” y quiero que las notificaciones lleguen al usuario root)
+
+![Imagen bind](/img/dns3.png)
+
+El carácter @ puede sustituir a la zona, es decir es lo mismo poner
+
+sercamp.org. IN SOA dns.sercamp.org root.sercamp.org
+
+@ IN SOA dns.sercamp.org root.sercamp.org
+
+SOA es un registro obligatorio
+
+NS es el servidor de nombres, aunque aparece en el SOA es necesario especificarlo de nuevo. Podría haber varios NS.
+
+A: se han especificado dos direcciones IP, la primera se refiere al servidor de nombres, la segunda es un equipo. Los nombres se pueden especificar aquí con el FQDN o no. En el ejemplo aparecen con el FQDN pero es lo mismo poner cualquiera de estas dos cosas:
+
+dns.sercamp.org. IN A 192.168.20.5
+dns IN A 192.168.20.5
+
+Si no lleva el punto final quiere decir que no está completamente cualificado (FQDN). A la hora de procesar el fichero es lo mismo poner
+
+dns
+dns.sercamp.org.
+
+Es decir, si no lleva el punto final, no está completamente cualificado, así que se le añadirá el dominio en nuestro caso sercamp.org
+
+El registro «MX» nos indica que el servidor de correo del dominio sercamp.org es mail.sercamp.org podríamos definir varios servidores de correo con la misma o distinta prioridad (10). El registro «A» de esta misma zona DNS nos indica que mail.sercamp.org. se encuentra en la IP 192.168.20.5.
+
+No es posible apuntar los registros MX directamente a una IP. Lo que debe hacerse es definir primero un registro «A» y posteriormente apuntar el registro MX a ese registro «A».
+
+#### Vamos a crear la zona de resolución inversa.
+
+Editamos el archivo: /etc/bind/db.20.168.192. Ejemplo incompleto
+![Imagen bind](/img/dns4.png)
+
