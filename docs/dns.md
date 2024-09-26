@@ -1,4 +1,4 @@
-#### Tarea DNS bind
+## Tarea DNS bind
 
 Queremos instalar un servidor DNS local en nuestra intranet que nos permita gestionar los nombres de las máquinas y recursos de nuestra red. Las características del servidor DNS que queremos instalar son las siguientes:
 
@@ -28,6 +28,7 @@ Recuerda que para editar existen varios programas: nano, vi, gedit
 ```
 $sudo nano /etc/bind/named.conf.options
 ```
+![Imagen bind](/img/dns1.)
 
 Con esta opción se especifica que las consultas que no pueda responder nuestro servidor sean reenviadas a la IP 8.8.8.8.
 
