@@ -28,7 +28,7 @@ Recuerda que para editar existen varios programas: nano, vi, gedit
 ```
 $sudo nano /etc/bind/named.conf.options
 ```
-![Imagen bind](/img/dns1.)
+![Imagen bind](/img/dns1.png)
 
 Con esta opción se especifica que las consultas que no pueda responder nuestro servidor sean reenviadas a la IP 8.8.8.8.
 
