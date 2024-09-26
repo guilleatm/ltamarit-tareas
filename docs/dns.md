@@ -44,22 +44,6 @@ Edita el archivo /etc/bind/named.conf.local. Ejemplo:
 
 ![Imagen bind](/img/dns2.png)
 
-//  
-// Do any local configuration here  
-// Consider adding the 1918 zones here, if they are not used in your  
-// organization  
-//include "/etc/bind/zones.rfc1918";  
-zone "sercamp.org" {  
-
-  type master;  
-  
-  file "/etc/bind/sercamp.org.db";  
-};  
-zone "20.168.192.in-addr.arpa" {  
-    type master;  
-    file "/etc/bind/db.20.168.192";  
-};  
-
 Recuerda: todas las lineas que comienzan por // son comentarios, no se procesan
 
 Con Type especifico que voy a crear una zona primaria
