@@ -107,5 +107,61 @@ No es posible apuntar los registros MX directamente a una IP. Lo que debe hacers
 #### Vamos a crear la zona de resolución inversa.
 
 Editamos el archivo: /etc/bind/db.20.168.192. Ejemplo incompleto
+
 ![Imagen bind](/img/dns4.png)
 
+### PASO 5. Comprobación de la sintaxis de los archivos mediante los comandos:
+
+```
+named-checkzone sercamp.org /etc/bind/sercamp.org.db
+named-checkzone 20.168.192.in-addr.arpa /etc/bind/db.20.168.192
+```
+
+Una vez comprobado que no existen errores (en el caso de que sí existan se puede mirar el archivo /var/log/syslog), se realiza el reinicio del servicio bind9.
+
+Distribuciones anteriores a Ubuntu 20:
+
+- Arranque: /etc/init.d/bind9 start
+- Parada: /etc/init.d/bind9 stop
+- Reinicio: /etc/init.d/bind9 restart
+
+Ubuntu 20:
+
+- Arranque: /etc/init.d/named start
+
+o bien
+
+service named start
+- Parada: /etc/init.d/named stop
+
+o bien
+
+service named stop
+- Reinicio: /etc/init.d/named restart
+ 
+o bien
+
+service named restart
+### PASO 6. Indicamos a nuestro servidor Linux que su servidor DNS es él mismo.
+
+Dependiendo de si tu S.O tiene o no interfaz gráfica y de la distribución que tengas Ubuntu 20, 22, 24 deberás realizar este paso de forma diferente según el gestor de resolución de nombres que tengas: Networkmanager, Netplan...etc. Es importante que tengas claro cual de todos debes tocar, si no lo tienes claro pregunta en el foro cómo se realiza la configuración de red de tu distribución.
+
+Adicionalmente existe un archivo (tanto en windows como en linux) llamado hosts que nos permite hacer una configuración estática nombreordenador-dirección IP. Este fichero tiene prioridad sobre las consultas DNS, si algo se encuentra aquí no se consultará al servidor DNS
+
+### Para entregar:
+
+- Configura el servidor DNS con los registros A, CNAME, MX y NS necesarios.
+- Configura un cliente Linux de tal manera que su DNS sea el servidor que acabamos de configurar con la IP: 192.168.20.5. En este punto la misma advertencia anterior: Dependiendo de si tu S.O tiene o no interfaz gráfica y de la distribución que tengas deberás realizar este paso de forma diferente según el gestor de resolución de nombres que tengas.
+
+En principio, como lo tenemos por DHCP, debería bastar con comprobar que la configuración es correcta.
+
+Entrega:
+
+captura de pantalla desde el cliente haciendo:
+- $ping dns.sercamp.org
+- $nslookup aula5pc2.sercamp.org
+- $nslookup ftp.sercamp.org
+- $dig sercamp.org
+- $nslookup 192.168.20.10
+  
+captura de pantalla desde el servidor con cada uno de los archivos de configuración modificados para realizar la tarea. 
