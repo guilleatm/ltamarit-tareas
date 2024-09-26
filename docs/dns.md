@@ -127,21 +127,10 @@ Distribuciones anteriores a Ubuntu 20:
 
 Ubuntu 20:
 
-- Arranque: /etc/init.d/named start
-
-o bien
-
-service named start
-- Parada: /etc/init.d/named stop
-
-o bien
-
-service named stop
-- Reinicio: /etc/init.d/named restart
+- Arranque: `/etc/init.d/named start` o bien `service named start`
+- Parada: `/etc/init.d/named stop` o bien `service named stop`
+- Reinicio: `/etc/init.d/named restart` o bien ` service named restart`
  
-o bien
-
-service named restart
 ### PASO 6. Indicamos a nuestro servidor Linux que su servidor DNS es él mismo.
 
 Dependiendo de si tu S.O tiene o no interfaz gráfica y de la distribución que tengas Ubuntu 20, 22, 24 deberás realizar este paso de forma diferente según el gestor de resolución de nombres que tengas: Networkmanager, Netplan...etc. Es importante que tengas claro cual de todos debes tocar, si no lo tienes claro pregunta en el foro cómo se realiza la configuración de red de tu distribución.
