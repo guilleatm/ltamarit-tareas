@@ -37,3 +37,39 @@ Comenta la línea que pone dnssec-verification auto; o pon no en vez de auto par
 Edita el archivo /etc/bind/named.conf y comenta la linea que hace referencia a named.conf.default-zones.
 
 El servidor DNS tiene muchas más opciones que permiten ajustar la configuración.
+
+### PASO 3. Crear una zona primaria. Vamos a crear la zona sercamp.org
+
+Edita el archivo /etc/bind/named.conf.local. Ejemplo:
+
+![Imagen bind](/img/dns2.png)
+
+//  
+// Do any local configuration here  
+// Consider adding the 1918 zones here, if they are not used in your  
+// organization  
+//include "/etc/bind/zones.rfc1918";  
+zone "sercamp.org" {  
+
+  type master;  
+  
+  file "/etc/bind/sercamp.org.db";  
+};  
+zone "20.168.192.in-addr.arpa" {  
+    type master;  
+    file "/etc/bind/db.20.168.192";  
+};  
+
+Recuerda: todas las lineas que comienzan por // son comentarios, no se procesan
+
+Con Type especifico que voy a crear una zona primaria
+
+Con file especifico el fichero que contiene los datos de la zona
+
+Ahora tenemos que crear los archivos de la zona:
+
+Para crear los archivos de zona nos copiaremos el archivo de zona db.empty:
+
+cp /etc/bind/db.empty /etc/bind/sercamp.org.db
+
+cp /etc/bind/db.empty /etc/bind/db.20.168.192
