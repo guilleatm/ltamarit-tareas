@@ -154,3 +154,34 @@ captura de pantalla desde el cliente haciendo:
 - $nslookup 192.168.20.10
   
 captura de pantalla desde el servidor con cada uno de los archivos de configuración modificados para realizar la tarea. 
+
+### IMPORTANTE
+
+Ubuntu por defecto tiene activado un dns caché local, por tanto la resolución de nombres siempre pasa por esta caché. Si probamos con comandos como dig o nslookup veremos como el servidor que responde es el bucle local. Mira los ejemplos (son dos versiones de ubuntu):
+
+![Imagen bind](/img/dns5.png)
+![Imagen bind](/img/dns6.png)
+
+En la imagen ves como responde el servidor 127.0.0.53 porque este dominio lo tiene almacenado en caché
+
+Para saltarlo y pedir la petición a un servidor específico debemos pasarle como parámetro el servidor dns al que interrogamos en los comandos
+
+dig @servnombres hostnameaconsultar. Ejemplo
+
+dig @dns.sercamp.org ftp.sercamp.org
+
+o bien nslookup hostnameaconsultar servnombres. Ejemplo
+
+nslookup ftp.sercamp.org 192.168.20.5
+
+![Imagen bind](/img/dns7.png)
+
+Esta caché cuando configuramos nuestro servidor DNS local a veces nos juega malas pasadas, si busco un registro de mi dominio y no lo encuentra (es posible que estemos haciendo pruebas y tengamos algun error) almacena en caché que ese registro no existe, luego podemos tener solucionado el problema y volvernos locos porque sigue diciendo que no encuentra el registro. Podemos solucionar esto limpiando la caché, al igual que se ha comentado con anterioridad el comando dependerá de la distribución, os pongo aquí el ejemplo para ubuntu 20
+
+sudo systemd-resolve --flush-caches
+
+con este comando liberas la cache, fijaros como lo hago en mi equipo
+
+![Imagen bind](/img/dns8.png)
+
+primero miro con systemctl is-active systemd-resolved si mi equipo tiene la caché activada, como veis en la imagen la respuesta es que sí (active), después compruebo con systemd-resolve --statistics que el tamaño de mi caché es 164 y después con sudo systemd-resolve --flush-caches libero la caché. La próxima vez que ejecute las estadisticas en current cache size pondrá 0
