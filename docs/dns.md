@@ -160,6 +160,7 @@ captura de pantalla desde el servidor con cada uno de los archivos de configurac
 Ubuntu por defecto tiene activado un dns caché local, por tanto la resolución de nombres siempre pasa por esta caché. Si probamos con comandos como dig o nslookup veremos como el servidor que responde es el bucle local. Mira los ejemplos (son dos versiones de ubuntu):
 
 ![Imagen bind](/img/dns5.png)
+
 ![Imagen bind](/img/dns6.png)
 
 En la imagen ves como responde el servidor 127.0.0.53 porque este dominio lo tiene almacenado en caché
