@@ -55,11 +55,7 @@ Es interesante averiguar si ya existe un servidor ftp instalado en nuestro servi
 ```update-alternatives --list ftp ```
 en nuestro caso obtenemos el siguiente resultado: 
 
-
-
-
-
-
+![Imagen vsftp](/img/ftp1.png)
 
 Si quisiéramos incluir el nuevo servicio FTP en la lista de los disponibles, se ejecutará la siguiente orden: 
 ```update-alternatives --config ftp ```
@@ -212,3 +208,28 @@ Otras opciones que tenemos sobre dicho servidor son:
 Una vez ejecutado el comando anterior, el servidor FTP ya lo tenemos ejecutándose y escuchando peticiones FTP en el puerto TCP 21. 
 
 A continuación 2 ejemplos de 2 conexiones contra un servidor FTP, una conexión se realiza mediante modo comando, y otra utilizando como cliente un navegador web. 
+
+![Imagen vsftp](/img/ftp2.png)
+
+![Imagen vsftp](/img/ftp3.png)
+
+### CONEXIÓN DESDE UN CLIENTE 
+Para conectarnos al servidor podemos utilizar un programa cliente como gFTP. Se puede instalar escribiendo la siguiente orden en el terminal: 
+
+``` sudo apt-get install gftp ```
+
+Ejemplo de gftp: 
+
+![Imagen vsftp](/img/ftp4.png)
+
+Nos conectamos al servidor tecleando su dirección IP en el campo servidor 192.168.10.5 o el nombre del servidor si tenemos el servidor DNS funcionando y dado de alta este registro. 
+En el puerto ponemos 21 y el usuario con su contraseña.
+
+Puedes probar a realizar las siguientes acciones: 
+Primero, en el servidor prepara un directorio con algunos ficheros. Y después:
+
+- Descarga un fichero de una carpeta del servidor: pincha en la ventana del servidor (derecha) y arrastra a la ventana del cliente o bien selecciona el directorio y/o fichero origen y el directorio destino y utiliza las flechas.
+
+- Sube un fichero a un directorio del servidor. 
+- Conectate al sitio remoto como cliente Anonymous: Nos conectamos al servidor de la misma forma que antes pero en lugar de especificar el nombre de usuario y contraseña, escribimos anonymous en el campo usuario y la contraseña se deja en blanco. 
+- Sube un fichero como usuario Anonymous.
