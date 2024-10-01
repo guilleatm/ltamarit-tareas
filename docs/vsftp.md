@@ -73,8 +73,11 @@ Nota: Pero debemos ir con cuidado, ya que, dicha directiva no debe estar activad
 Recordar que socket podemos definirlo de forma sencilla como un mecanismo que identifica una conexión mediante una dirección IP y un número de puerto (bien sea con el protocolo IP versión 6 o versión 4). 
 #### Gestión de usuarios. 
 En este servidor, por defecto, los usuarios que pueden utilizar el servicio son los anónimos y los usuarios con cuenta en el sistema. Las siguientes líneas nos servirán para establecer ambos tipos de usuarios, es decir, por un lado los usuarios anónimos y por otro los usuarios que poseen cuenta en la máquina local. 
+
 ```anonymous_enable=YES```
+
 ```local_enable=YES ```
+
 Podemos observar que en el fichero de configuración, por defecto, la línea con la directiva para habilitar a los usuarios locales están comentada, es decir, que en caso de desear que los usuarios locales pueden acceder al servidor FTP, deberemos descomentarla. 
 
 Volviendo a las 2 directivas anteriores, comentar que la primera línea, como podemos suponer, indica que cualquier usuario se puede conectar al servidor dando el nombre de usuario anonymous o ftp, y contraseña en blanco.
@@ -89,8 +92,10 @@ Como se ha comentado anteriormente, dicho usuario se ejecuta bajo el entorno o a
 Los usuarios podrán descargarse archivos en la estructura del directorio /srv/ftp, según los permisos que posea el directorio y/o subdirectorios que se encuentren por debajo de él, y de los permisos de los archivos que se encuentren allí. 
 
 Por otra parte cuando un usuario local se conecta tendremos 2 opciones para configurar su inicio de sesión: 
+
 - __Se conecta como usuario del sistema__, en cuyo caso su directorio home es el propio que posee en la máquina, y tiene como directorio raíz el propio directorio raíz del sistema operativo completo. La descarga de archivos de este usuario vendrá dada por los permisos que posea cada fichero, pero podrán navegar y descargarse ficheros de cualquier sitio, siempre y cuando los permisos de los mismos se lo permitan. 
 - __Se conecta como un usuario del sistema, pero se le cambia su directorio raíz a su directorio home__, con lo que no tiene disponible todo el directorio o árbol de directorios, sino que sólo podrá ver los archivos que existan en su directorio. Es decir lo que le vamos a hacer es “enjaularlo” dentro de su directorio home, al igual que hacíamos con los usuarios anónimos. 
+
 Para poder activar la segunda opción, es decir, el enjaular al usuario local dentro de su propio directorio home, deberemos activar la siguiente directiva: 
 
 __chroot_local_user=YES__
@@ -104,8 +109,9 @@ chroot_list_file=/etc/vsftpd.chroot_lista```
 
 La primera directiva indicará que existe una lista de usuarios que al conectarse no deben ser enjaulados mediante chroot, y la segunda directiva nos indica el nombre del fichero donde se encuentran dichos usuarios. Por defecto estas directivas están comentadas, y el fichero especificado no existe en nuestro sistema.
  
-Por último, decir que también podemos habilitar la descarga de archivos en formato ASCII en el servidor, para conseguir este objetivo deberemos habilitar la directiva siguiente: 
-```ascii_download_enable=YES ```
+Por último, decir que también podemos habilitar la descarga de archivos en formato ASCII en el servidor, para conseguir este objetivo deberemos habilitar la directiva siguiente:
+
+__ascii_download_enable=YES__
 
 #### Carga de archivos para usuarios locales. 
 Si queremos permitir que los usuarios locales suban o carguen archivos al servidor FTP habrá que habilitar la siguiente directiva: 
@@ -127,39 +133,52 @@ Por defecto, la carga de archivos para los usuarios anónimos está desactivada.
 
 __anon_upload_enable=YES __
 
-Deberemos crear un directorio (por ejemplo entrada ó incoming), que tenga los permisos suficientes para que los usuarios puedan escribir en él. Con las siguientes órdenes se crea el directorio, se le da permisos y se visualizan dichos permisos (siempre como usuario root): 
+Deberemos crear un directorio (por ejemplo entrada ó incoming), que tenga los permisos suficientes para que los usuarios puedan escribir en él. Con las siguientes órdenes se crea el directorio, se le da permisos y se visualizan dichos permisos (siempre como usuario root):
+
 ```mkdir /srv/ftp/incoming 
 chmod 777 /srv/ftp/incoming 
 ls -l /srv/ftp```
+
 Por defecto, los archivos cargados lo harán con permisos 600, y si queremos que un usuario anónimo pueda descargarlos se deberán cambiar los permisos 644. Es decir cuando coloquemos allí los archivos con los permisos 600, los usuarios anónimos no tendrán permisos para realizar ninguna tarea sobre dichos archivos, y mediante el establecimiento de los permisos 644 (rwr—r), estamos dando permisos de lectura para dichos archivos. Para hacer esto tenemos la directiva siguiente: 
-anon_umask=022 
+
+__anon_umask=022__
+
 Si desamos que los usuarios anónimos modifiquen los archivos que pertenecen a los usuarios anónimos y puedan crear directorios, tendremos que activar las siguientes directivas: 
-anon_other_write_enable=YES 
-anon_mkdir_write_enable=YES 
+__anon_other_write_enable=YES 
+anon_mkdir_write_enable=YES__
+
 Tanto la directiva anon_umask como la directiva anon_other_write_enable no se encuentran en el fichero de configuración básico, pero podríamos añadirlas al fichero. 
-Visualizar mensajes. 
+
+#### Visualizar mensajes. 
 Al conectarse un usuario al servicio FTP y hacer una cambio de directorio dentro del directorio raíz de descargas (en nuestro caso el directorio incoming), se puede visualizar un mensaje cuyo texto se almacena en el archivo .mensaje (podría llamarse cualquier otro nombre). 
 Para hacer esto deberemos seguir los siguientes pasos:
-1. Crear un archivo .mensaje e incluir en él el texto que deseemos visualizar. 
-2. Incluir las siguientes directivas dentro del fichero de configuración 
-dirmessage_enable=YES 
-message_file=.mensaje 
-Por defecto en nuestro fichero de configuración si que nos viene activada la opción de visualización de un mensaje, pero no nos viene la opción de particularización del texto del mensaje. La directiva sobre el fichero del mensaje se la añadimos a mano. Recordar que deberemos crear el fichero e introducir el texto que deseemos. 
+
+- Crear un archivo .mensaje e incluir en él el texto que deseemos visualizar. 
+- Incluir las siguientes directivas dentro del fichero de configuración __dirmessage_enable=YES message_file=.mensaje__
+
+Por defecto en nuestro fichero de configuración si que nos viene activada la opción de visualización de un mensaje, pero no nos viene la opción de particularización del texto del mensaje. La
+directiva sobre el fichero del mensaje se la añadimos a mano. Recordar que deberemos crear el fichero e introducir el texto que deseemos. 
+
 También se puede establecer un mensaje de bienvenida al servidor FTP cuando un usuario se conecta al mismo. Esto se realiza con la siguiente directiva: 
-ftpd_banner=”Bienvenido al servidor FTP de nombre” 
+__ftpd_banner=”Bienvenido al servidor FTP de nombre”__
+
 En este caso esta directiva está desactivada, y por tanto nos saldrá un mensaje por defecto al iniciar una conexión sobre nuestro servidor FTP. 
-Registro de actividad. 
+
+#### Registro de actividad. 
 Mediante el registro de actividad podremos llevar un control sobre la actividad desarrollada en nuestro servidor FTP. Dicho registro se realiza mediante el archivo 
-/var/log/vsftpd.log y las directivas: 
-xferlog_enable=YES 
-xferlog_file=/var/log/vsftpd.log 
+```/var/log/vsftpd.log``` y las directivas: 
+__xferlog_enable=YES__
+__xferlog_file=/var/log/vsftpd.log__
+ 
 Para visualizar la información de actividad deberemos visualizar el fichero indicado, incluso lo podemos tener abierto visualizando online las últimas líneas del fichero, es decir, la actividad que se está registrando en este mismo momento. 
+
 La segunda directiva en el fichero de configuración por defecto está comentada, dicho fichero es el estándar para almacenar los logs. En caso de que el log quisieramos guardarlo en otro fichero si que deberíamos descomentarla y modificar el nombre del fichero. 
-Tiempos de conexión. 
+
+#### Tiempos de conexión. 
 También son importantes una serie de directivas que hacen referencia a las opciones de configuración sobre los tiempos de conexión de las diferentes conexiones de los usuarios. 
 Algunas de las directivas en cuestión son las siguientes: 
-accept_timeout=60 
-data_connection_timeout=120 
+__accept_timeout=60__
+__data_connection_timeout=120__
 idle_session_timeout=600
 La primera directiva no se encuentra en el fichero de configuración ejemplo, las otras 2 directivas si que se encuentran, pero están comentadas por defecto. La explicación de dichas directivas es la siguiente: 
 ● accept_timeou t: indica, en segundos, el tiempo para establecer una conexión en modo pasivo de un usuario remoto. Por defecto son 60 segundos. 
