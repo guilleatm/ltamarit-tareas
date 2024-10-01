@@ -62,12 +62,13 @@ Si quisiéramos incluir el nuevo servicio FTP en la lista de los disponibles, se
 y obtendríamos las posibles opciones o alternativas, debiendo seleccionar la que deseemos dejar como activa. 
 
 ### CONFIGURACIÓN DE NUESTRO FICHERO 
-#### Ejecución del servidor. 
+### Ejecución del servidor. 
 El servidor vsftpd puede ejecutarse como un proceso independiende, es decir, en standalone. Para ejecutarse el servidor como standalone deberá estar activada la siguiente directiva: 
 __listen=YES__
+
 Nota: Pero debemos ir con cuidado, ya que, dicha directiva no debe estar activada simultáneamente con la directiva __listen_ipv6__, que sirve para atender peticiones también como proceso independiente, pero para sockets ipv6. 
 Recordar que socket podemos definirlo de forma sencilla como un mecanismo que identifica una conexión mediante una dirección IP y un número de puerto (bien sea con el protocolo IP versión 6 o versión 4). 
-#### Gestión de usuarios. 
+### Gestión de usuarios. 
 En este servidor, por defecto, los usuarios que pueden utilizar el servicio son los anónimos y los usuarios con cuenta en el sistema. Las siguientes líneas nos servirán para establecer ambos tipos de usuarios, es decir, por un lado los usuarios anónimos y por otro los usuarios que poseen cuenta en la máquina local. 
 
 __anonymous_enable=YES__
@@ -80,7 +81,7 @@ Volviendo a las 2 directivas anteriores, comentar que la primera línea, como po
 
 La segunda línea indica que los usuarios locales (usuarios con una cuenta local en la máquina) pueden conectarse al servidor. Para no permitir la conexión de estos usuarios podremos hacer 2 cosas, comentar la línea, ó igualar la directiva al valor NO. 
 
-#### Descarga de archivos. 
+### Descarga de archivos. 
 Cuando un usuario anónimo (anonymous ó ftp) se conecta al servidor FTP, dicho usuario entrará al directorio home del usuario ftp. Por defecto el directorio home de dicho usuario es __/srv/ftp__.
 
 Como se ha comentado anteriormente, dicho usuario se ejecuta bajo el entorno o ambiente de una “jaula” chroot, por tanto dicho directorio es el raíz para el usuario.
@@ -110,7 +111,7 @@ Por último, decir que también podemos habilitar la descarga de archivos en for
 
 __ascii_download_enable=YES__
 
-#### Carga de archivos para usuarios locales. 
+### Carga de archivos para usuarios locales. 
 Si queremos permitir que los usuarios locales suban o carguen archivos al servidor FTP habrá que habilitar la siguiente directiva: 
 __Write_enable=YES__
 
@@ -148,7 +149,7 @@ __anon_mkdir_write_enable=YES__
 
 Tanto la directiva anon_umask como la directiva anon_other_write_enable no se encuentran en el fichero de configuración básico, pero podríamos añadirlas al fichero. 
 
-#### Visualizar mensajes. 
+### Visualizar mensajes. 
 Al conectarse un usuario al servicio FTP y hacer una cambio de directorio dentro del directorio raíz de descargas (en nuestro caso el directorio incoming), se puede visualizar un mensaje cuyo texto se almacena en el archivo .mensaje (podría llamarse cualquier otro nombre). 
 Para hacer esto deberemos seguir los siguientes pasos:
 
@@ -174,7 +175,7 @@ Para visualizar la información de actividad deberemos visualizar el fichero ind
 
 La segunda directiva en el fichero de configuración por defecto está comentada, dicho fichero es el estándar para almacenar los logs. En caso de que el log quisieramos guardarlo en otro fichero si que deberíamos descomentarla y modificar el nombre del fichero. 
 
-#### Tiempos de conexión. 
+### Tiempos de conexión. 
 También son importantes una serie de directivas que hacen referencia a las opciones de configuración sobre los tiempos de conexión de las diferentes conexiones de los usuarios.
 
 Algunas de las directivas en cuestión son las siguientes: 
@@ -189,15 +190,16 @@ La primera directiva no se encuentra en el fichero de configuración ejemplo, la
 - accept_timeou t: indica, en segundos, el tiempo para establecer una conexión en modo pasivo de un usuario remoto. Por defecto son 60 segundos. 
 - data_connection_timeou t: indica, en segundos, el tiempo máximo que el servidor espera cuando una transferencia no progresa. Por defecto son 300 segundos. 
 - idle_session_timeou t: indica, en segundos, el tiempo máximo que se concede a un usuario remoto que no está activo, es decir, ejecutando órdenes válidas para un servidor FTP. Pasado el tiempo indicado por esta directiva sin detectarse ejecuciones, se procederá a cortar la conexión. Por defecto son 300 segundos. 
-Estas directivas existirán en cualquier servidor FTP, aunque los tiempo por defectos dependerán del servidor en cuestión, de la distribución, etc. 
-Listado recursivo. 
-El paquete vsftpd es bastante sencillo y no dispone de excesivas opciones para moverse por dentro del directorio raíz. Existe una directiva que nos permitirá el listado recursivo dentro de un directorio y que puede ser útil en algunos casos. Dicha directiva es: 
-ls_recurse_enable=YES 
+Estas directivas existirán en cualquier servidor FTP, aunque los tiempo por defectos dependerán del servidor en cuestión, de la distribución, etc.
 
-EJECUCIÓN DEL SERVICIO VSFTPD. 
+### Listado recursivo. 
+El paquete vsftpd es bastante sencillo y no dispone de excesivas opciones para moverse por dentro del directorio raíz. Existe una directiva que nos permitirá el listado recursivo dentro de un directorio y que puede ser útil en algunos casos. Dicha directiva es: 
+__ls_recurse_enable=YES__
+
+### EJECUCIÓN DEL SERVICIO VSFTPD. 
 Tras haber realizado la configuración del servidor FTP, sólo nos queda lanzar el servicio, y ésto lo haremos mediante la orden: 
 
-```service vsftpd start```     o ```/etc/init.d/vsftpd start ```
+```service vsftpd start``` o ```/etc/init.d/vsftpd start ```
 
 Otras opciones que tenemos sobre dicho servidor son: 
 
@@ -213,10 +215,10 @@ A continuación 2 ejemplos de 2 conexiones contra un servidor FTP, una conexión
 
 ![Imagen vsftp](/img/ftp3.png)
 
-### CONEXIÓN DESDE UN CLIENTE 
+### Conexión desde un cliente 
 Para conectarnos al servidor podemos utilizar un programa cliente como gFTP. Se puede instalar escribiendo la siguiente orden en el terminal: 
 
-``` sudo apt-get install gftp ```
+```sudo apt-get install gftp```
 
 Ejemplo de gftp: 
 
