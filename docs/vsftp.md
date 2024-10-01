@@ -74,9 +74,9 @@ Recordar que socket podemos definirlo de forma sencilla como un mecanismo que id
 #### Gestión de usuarios. 
 En este servidor, por defecto, los usuarios que pueden utilizar el servicio son los anónimos y los usuarios con cuenta en el sistema. Las siguientes líneas nos servirán para establecer ambos tipos de usuarios, es decir, por un lado los usuarios anónimos y por otro los usuarios que poseen cuenta en la máquina local. 
 
-```anonymous_enable=YES```
+__anonymous_enable=YES__
 
-```local_enable=YES ```
+__local_enable=YES__
 
 Podemos observar que en el fichero de configuración, por defecto, la línea con la directiva para habilitar a los usuarios locales están comentada, es decir, que en caso de desear que los usuarios locales pueden acceder al servidor FTP, deberemos descomentarla. 
 
@@ -104,8 +104,9 @@ Como podemos ver en el fichero de configuración, dicha directiva esta comentada
 
 Si en el sistema nos interesa que ciertos usuarios no se queden “enjaulados” dentro de su propio directorio home, podríamos solucionarlo mediante la inclusión de dichas cuentas de usuario en un archivo usando las directivas siguientes: 
 
-```chroot_list_enable=YES 
-chroot_list_file=/etc/vsftpd.chroot_lista```
+__chroot_list_enable=YES__ 
+
+__chroot_list_file=/etc/vsftpd.chroot_lista__
 
 La primera directiva indicará que existe una lista de usuarios que al conectarse no deben ser enjaulados mediante chroot, y la segunda directiva nos indica el nombre del fichero donde se encuentran dichos usuarios. Por defecto estas directivas están comentadas, y el fichero especificado no existe en nuestro sistema.
  
@@ -120,7 +121,7 @@ __Write_enable=YES__
 Pero cuando un usuario cargue un archivo en el servidor, ¿qué permisos tendrá el fichero?. 
 La contestación a esta pregunta es bastante fácil, nosotros podremos establecer mediante una directiva los permisos con los que quedarán los archivos que suban los usuarios. Dicha directiva es:
 
-__local_umask=022 __
+__local_umask=022__
 
 La directiva hace referencia a la máscara (umask), y al igual que el comando umask nos indicará los permisos a la inversa. Es decir, esto nos indicará que los permisos de los archivos subidos serán 644 (lectura y escritura para el usuario propietario, y sólo lectura para el grupo propietario y para el resto de usuarios). Podríamos preguntarnos por qué no es 755, recordar que por defecto en los archivos no se va a activar el bit de ejecución, por tanto los permisos nos quedan como 644 (rwr—r).
 
@@ -131,21 +132,23 @@ __ascii_upload_enable=YES__
 #### Carga de archivos para usuarios anónimos. 
 Por defecto, la carga de archivos para los usuarios anónimos está desactivada. Para activarla deberemos habilitar la siguiente directiva:
 
-__anon_upload_enable=YES __
+__anon_upload_enable=YES__
 
 Deberemos crear un directorio (por ejemplo entrada ó incoming), que tenga los permisos suficientes para que los usuarios puedan escribir en él. Con las siguientes órdenes se crea el directorio, se le da permisos y se visualizan dichos permisos (siempre como usuario root):
 
-```mkdir /srv/ftp/incoming 
-chmod 777 /srv/ftp/incoming 
-ls -l /srv/ftp```
+```mkdir /srv/ftp/incoming```
+
+```chmod 777 /srv/ftp/incoming ```
+
+```ls -l /srv/ftp```
 
 Por defecto, los archivos cargados lo harán con permisos 600, y si queremos que un usuario anónimo pueda descargarlos se deberán cambiar los permisos 644. Es decir cuando coloquemos allí los archivos con los permisos 600, los usuarios anónimos no tendrán permisos para realizar ninguna tarea sobre dichos archivos, y mediante el establecimiento de los permisos 644 (rwr—r), estamos dando permisos de lectura para dichos archivos. Para hacer esto tenemos la directiva siguiente: 
 
 __anon_umask=022__
 
 Si desamos que los usuarios anónimos modifiquen los archivos que pertenecen a los usuarios anónimos y puedan crear directorios, tendremos que activar las siguientes directivas: 
-__anon_other_write_enable=YES 
-anon_mkdir_write_enable=YES__
+__anon_other_write_enable=YES__
+__anon_mkdir_write_enable=YES__
 
 Tanto la directiva anon_umask como la directiva anon_other_write_enable no se encuentran en el fichero de configuración básico, pero podríamos añadirlas al fichero. 
 
@@ -156,8 +159,7 @@ Para hacer esto deberemos seguir los siguientes pasos:
 - Crear un archivo .mensaje e incluir en él el texto que deseemos visualizar. 
 - Incluir las siguientes directivas dentro del fichero de configuración __dirmessage_enable=YES message_file=.mensaje__
 
-Por defecto en nuestro fichero de configuración si que nos viene activada la opción de visualización de un mensaje, pero no nos viene la opción de particularización del texto del mensaje. La
-directiva sobre el fichero del mensaje se la añadimos a mano. Recordar que deberemos crear el fichero e introducir el texto que deseemos. 
+Por defecto en nuestro fichero de configuración si que nos viene activada la opción de visualización de un mensaje, pero no nos viene la opción de particularización del texto del mensaje. La directiva sobre el fichero del mensaje se la añadimos a mano. Recordar que deberemos crear el fichero e introducir el texto que deseemos. 
 
 También se puede establecer un mensaje de bienvenida al servidor FTP cuando un usuario se conecta al mismo. Esto se realiza con la siguiente directiva: 
 __ftpd_banner=”Bienvenido al servidor FTP de nombre”__
@@ -166,7 +168,7 @@ En este caso esta directiva está desactivada, y por tanto nos saldrá un mensaj
 
 #### Registro de actividad. 
 Mediante el registro de actividad podremos llevar un control sobre la actividad desarrollada en nuestro servidor FTP. Dicho registro se realiza mediante el archivo 
-```/var/log/vsftpd.log``` y las directivas: 
+__/var/log/vsftpd.log__ y las directivas: 
 __xferlog_enable=YES__
 __xferlog_file=/var/log/vsftpd.log__
  
@@ -175,11 +177,16 @@ Para visualizar la información de actividad deberemos visualizar el fichero ind
 La segunda directiva en el fichero de configuración por defecto está comentada, dicho fichero es el estándar para almacenar los logs. En caso de que el log quisieramos guardarlo en otro fichero si que deberíamos descomentarla y modificar el nombre del fichero. 
 
 #### Tiempos de conexión. 
-También son importantes una serie de directivas que hacen referencia a las opciones de configuración sobre los tiempos de conexión de las diferentes conexiones de los usuarios. 
+También son importantes una serie de directivas que hacen referencia a las opciones de configuración sobre los tiempos de conexión de las diferentes conexiones de los usuarios.
+
 Algunas de las directivas en cuestión son las siguientes: 
+
 __accept_timeout=60__
+
 __data_connection_timeout=120__
-idle_session_timeout=600
+
+__idle_session_timeout=600__
+
 La primera directiva no se encuentra en el fichero de configuración ejemplo, las otras 2 directivas si que se encuentran, pero están comentadas por defecto. La explicación de dichas directivas es la siguiente: 
 ● accept_timeou t: indica, en segundos, el tiempo para establecer una conexión en modo pasivo de un usuario remoto. Por defecto son 60 segundos. 
 ● data_connection_timeou t: indica, en segundos, el tiempo máximo que el servidor espera cuando una transferencia no progresa. Por defecto son 300 segundos. 
