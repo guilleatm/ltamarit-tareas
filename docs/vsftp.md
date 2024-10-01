@@ -26,30 +26,32 @@ local_enable=YES (local_enable=NO en caso contrario).
 #### chroot_local_user 
 Permite enjaular a los usuarios dentro de su propio directorio personal. Si en el fichero de configuración aparece chroot_local_user=NO, entonces el usuario tiene acceso a todo el sistema de archivos, en función de los permisos asignados. Cuando un usuario local se conecta y en el fichero de configuración aparece chroot_local_user=YES, entonces enjaulamos a los usuarios dentro de su propio directorio personal, sin posibilidad de acceder a todo el sistema de ficheros. Se mejora por tanto la seguridad.
 
-Con esta configuración ya tendríamos enjaulados a los usuarios en su carpeta home pero no podremos escribir necesitamos añadir:
-* allow_writeable_chroot=YES *
+Con esta configuración ya tendríamos enjaulados a los usuarios en su carpeta home pero no podremos escribir necesitamos añadir: __allow_writeable_chroot=YES__
  
 #### write_enable 
 Con esta directiva se puede permitir o denegar la subida de ficheros al servidor FTP. Si se permite que los usuarios suban archivos al servidor FTP habría que poner write_enable=YES. 
-local_umask 
+#### local_umask 
 Se pueden establecer los permisos con los que quedará el archivo al subirlo al servidor FTP. local_umask=022 indicará que los permisos de los archivos serán 644, es decir, lectura y escritura para el propietario del fichero, y sólo lectura para el grupo y los demás. 
-anon_upload_enable 
+#### anon_upload_enable 
 Esta directiva indica si los usuarios anónimos pueden cargar archivos en el servidor. anon_upload_enable=YES permite que los usuarios anónimos puedan subir ficheros. 
-anon_mkdir_write_enable 
+#### anon_mkdir_write_enable 
 Si esta directiva tiene el valor YES se permitirá la creación de directorios en el servidor. 
-ftpd_banner 
+#### ftpd_banner 
 Con esta directiva se puede mostrar un mensaje de bienvenida cuando un usuario se conecte al servidor FTP. ftpd_banner=”Bienvenido a mi servidor FTP”. 
-anon_max_rate 
+#### anon_max_rate 
 Se utiliza para limitar la tasa de transferencia a usuarios anónimos. En el siguiente ejemplo se limita la tasa de transferencia a los usuarios anónimos a 10Kb/s: 
 anon_max_rate=1024 
-local_max_rate 
+#### local_max_rate 
 Se utiliza para limitar la tasa de transferencia en bytes por segundo a los usuarios locales del servidor. En el siguiente ejemplo se limita la tasa de transferencia a 10Kb/s: 
 local_max_rate=1024 
-max_clients 
+#### max_clients 
 Indica el número máximo de clientes que podrán conectarse simultáneamente al servidor. En el siguiente ejemplo son 5: max_clients=5 
 
 Hay que tener en cuenta que cada vez que se haga un cambio en el fichero de configuración de vsftpd se debe reiniciar el servidor con la siguiente orden: 
-	# service vsftpd restart  o
-# /etc/init.d/vsftpd restart
+```service vsftpd restart```  o` ```/etc/init.d/vsftpd restart```
 
 Otras opciones disponibles son stop (parar), reload (recarga), start (inicio).
+### INTERESANTE 
+Es interesante averiguar si ya existe un servidor ftp instalado en nuestro servidor, para ello ejecutamos la orden siguiente (con un usuario con privilegios de administrador): 
+```update-alternatives --list ftp ```
+en nuestro caso obtenemos el siguiente resultado: 
