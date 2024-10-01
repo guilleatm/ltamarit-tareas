@@ -169,7 +169,9 @@ En este caso esta directiva está desactivada, y por tanto nos saldrá un mensaj
 #### Registro de actividad. 
 Mediante el registro de actividad podremos llevar un control sobre la actividad desarrollada en nuestro servidor FTP. Dicho registro se realiza mediante el archivo 
 __/var/log/vsftpd.log__ y las directivas: 
+
 __xferlog_enable=YES__
+
 __xferlog_file=/var/log/vsftpd.log__
  
 Para visualizar la información de actividad deberemos visualizar el fichero indicado, incluso lo podemos tener abierto visualizando online las últimas líneas del fichero, es decir, la actividad que se está registrando en este mismo momento. 
@@ -188,9 +190,9 @@ __data_connection_timeout=120__
 __idle_session_timeout=600__
 
 La primera directiva no se encuentra en el fichero de configuración ejemplo, las otras 2 directivas si que se encuentran, pero están comentadas por defecto. La explicación de dichas directivas es la siguiente: 
-● accept_timeou t: indica, en segundos, el tiempo para establecer una conexión en modo pasivo de un usuario remoto. Por defecto son 60 segundos. 
-● data_connection_timeou t: indica, en segundos, el tiempo máximo que el servidor espera cuando una transferencia no progresa. Por defecto son 300 segundos. 
-● idle_session_timeou t: indica, en segundos, el tiempo máximo que se concede a un usuario remoto que no está activo, es decir, ejecutando órdenes válidas para un servidor FTP. Pasado el tiempo indicado por esta directiva sin detectarse ejecuciones, se procederá a cortar la conexión. Por defecto son 300 segundos. 
+- accept_timeou t: indica, en segundos, el tiempo para establecer una conexión en modo pasivo de un usuario remoto. Por defecto son 60 segundos. 
+- data_connection_timeou t: indica, en segundos, el tiempo máximo que el servidor espera cuando una transferencia no progresa. Por defecto son 300 segundos. 
+- idle_session_timeou t: indica, en segundos, el tiempo máximo que se concede a un usuario remoto que no está activo, es decir, ejecutando órdenes válidas para un servidor FTP. Pasado el tiempo indicado por esta directiva sin detectarse ejecuciones, se procederá a cortar la conexión. Por defecto son 300 segundos. 
 Estas directivas existirán en cualquier servidor FTP, aunque los tiempo por defectos dependerán del servidor en cuestión, de la distribución, etc. 
 Listado recursivo. 
 El paquete vsftpd es bastante sencillo y no dispone de excesivas opciones para moverse por dentro del directorio raíz. Existe una directiva que nos permitirá el listado recursivo dentro de un directorio y que puede ser útil en algunos casos. Dicha directiva es: 
@@ -198,12 +200,15 @@ ls_recurse_enable=YES
 
 EJECUCIÓN DEL SERVICIO VSFTPD. 
 Tras haber realizado la configuración del servidor FTP, sólo nos queda lanzar el servicio, y ésto lo haremos mediante la orden: 
-# service vsftpd start     o
-# /etc/init.d/vsftpd start 
+
+```service vsftpd start```     o ```/etc/init.d/vsftpd start ```
+
 Otras opciones que tenemos sobre dicho servidor son: 
-● stop : nos servirá para parar el servicio. 
-● reload : nos servirá para recargar los parametros de configuración. 
-● restar t: nos servirá para parar y volver a iniciar el servicio en una sola orden. 
+
+- stop : nos servirá para parar el servicio. 
+- reload : nos servirá para recargar los parametros de configuración. 
+- restar t: nos servirá para parar y volver a iniciar el servicio en una sola orden. 
+
 Una vez ejecutado el comando anterior, el servidor FTP ya lo tenemos ejecutándose y escuchando peticiones FTP en el puerto TCP 21. 
 
 A continuación 2 ejemplos de 2 conexiones contra un servidor FTP, una conexión se realiza mediante modo comando, y otra utilizando como cliente un navegador web. 
