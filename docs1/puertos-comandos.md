@@ -8,10 +8,10 @@ El comando `ss` es una herramienta poderosa para mostrar sockets y conexiones de
 
 ```sudo ss -tuln```
 
-    -t: Muestra conexiones TCP.
-    -u: Muestra conexiones UDP.
-    -l: Muestra solo puertos en escucha (listening).
-    -n: No resuelve los nombres de los servicios o direcciones.
+-t: Muestra conexiones TCP.
+-u: Muestra conexiones UDP.
+-l: Muestra solo puertos en escucha (listening).
+-n: No resuelve los nombres de los servicios o direcciones.
 
 ## 2. Usando netstat (si está disponible)
 
@@ -40,8 +40,8 @@ Escanear puertos locales:
 
 ```sudo nmap -sT -O localhost```
 
-    -sT: Realiza un escaneo completo de puertos TCP.
-    -O: Intenta detectar el sistema operativo.
+-sT: Realiza un escaneo completo de puertos TCP.
+-O: Intenta detectar el sistema operativo.
 
 ## 4. Usando lsof
 
