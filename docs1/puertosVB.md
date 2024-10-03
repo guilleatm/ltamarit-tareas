@@ -45,7 +45,7 @@ Con esta configuración, cualquier tráfico dirigido a `localhost:8080` en el si
 
 ¿Como puedo saber si tengo los puertos abiertos? habréis dado esto en redes de primero pero os dejo aquí un pequeño recordatorio
 
-[Comandos para obtener información de puertos](docs1/puertos-comandos.md)
+[Comandos para obtener información de puertos](puertos-comandos.md)
 
 Si ejecutáis esto en la máquina virtual donde acabáis de instalar el servicio FTP debería daros como resultado que el puerto 21 está abierto
 
