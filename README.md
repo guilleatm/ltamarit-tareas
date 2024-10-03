@@ -1,5 +1,5 @@
 ##### TAREAS ASIGNATURA SERVICIOS EN RED
-###### [DNS bind](docs/dns.md)
+###### [DNS bind](docs/dnsbind.md)
 ###### [DNS dnsmasq](docs/dnsmasq.md)
 
 ##### GUIAS PARA REALIZAR LAS TAREAS
