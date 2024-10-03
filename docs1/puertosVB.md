@@ -23,7 +23,7 @@ El reenvío de puertos en VirtualBox permite acceder a servicios dentro de una m
    - En **Protocolo**, selecciona TCP o UDP dependiendo de tu necesidad.
    - En el campo **IP del anfitrión**, puedes dejarlo en blanco o usar `127.0.0.1` si solo deseas acceder desde el host.
    - En **Puerto del anfitrión**, introduce el puerto del host que se usará para redirigir el tráfico.
-   - En **IP del invitado**, puedes usar `10.0.2.15` (IP por defecto de NAT).
+   - En **IP del invitado**, si tienes la configuración de clase puedes usar `192.168.20.5`.
    - En **Puerto del invitado**, introduce el puerto en la máquina virtual al que deseas redirigir el tráfico (por ejemplo, el puerto 80 para un servidor web o el 22 para SSH).
 
 4. **Guardar y reiniciar la máquina virtual:**
@@ -36,7 +36,7 @@ Supongamos que quieres acceder a un servidor web que corre en el puerto 80 de tu
 - **Protocolo:** TCP
 - **IP del anfitrión:** 127.0.0.1
 - **Puerto del anfitrión:** 8080 (esto permitirá acceder al servidor web desde `http://localhost:8080`)
-- **IP del invitado:** 10.0.2.15
+- **IP del invitado:** 192.168.20.5
 - **Puerto del invitado:** 80
 
 Con esta configuración, cualquier tráfico dirigido a `localhost:8080` en el sistema host será reenviado al puerto 80 de la máquina virtual, donde el servidor web está corriendo.
