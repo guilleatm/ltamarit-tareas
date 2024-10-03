@@ -5,24 +5,20 @@ El reenvío de puertos en VirtualBox permite acceder a servicios dentro de una m
 
 ## Pasos para configurar el reenvío de puertos:
 
-1. **Abrir VirtualBox y seleccionar la máquina virtual:**
+1a. **Si tienes un adaptador de red Nat (si tienes la configuración de clase este NO es nuestro caso):**
    - Inicia VirtualBox y selecciona la máquina virtual en la que deseas configurar el reenvío de puertos.
-   
-2. **Acceder a la configuración de red de la máquina virtual:**
    - Haz clic derecho sobre la máquina virtual y selecciona **Configuración**.
    - En el panel de configuración, selecciona la opción **Red**.
-
-3. **Configurar el adaptador de red:**
-   - Asegúrate de que el **Adaptador 1** está habilitado y configurado en modo **NAT** (Network Address Translation).
-
-4. **Acceder a las opciones avanzadas:**
    - En la sección del adaptador de red, haz clic en el botón de **Avanzadas** para desplegar más opciones.
 
-5. **Agregar reglas de reenvío de puertos:**
+1b. **Si tienes un adaptador de red RedNat (nuestro caso).**
+   - Inicia VirtualBox y selecciona la opción del menú Archivo-Preferencias **Red**.
+   - Edita la RedNat seleccionada (icono de la derecha)
+2. **Agregar reglas de reenvío de puertos:**
    - Haz clic en **Reenvío de puertos** para abrir el menú de configuración.
    - En esta ventana, puedes agregar nuevas reglas de reenvío de puertos.
 
-6. **Configurar una regla de reenvío de puertos:**
+3. **Configurar una regla de reenvío de puertos:**
    - En el campo de **Nombre**, puedes escribir un nombre descriptivo para la regla.
    - En **Protocolo**, selecciona TCP o UDP dependiendo de tu necesidad.
    - En el campo **IP del anfitrión**, puedes dejarlo en blanco o usar `127.0.0.1` si solo deseas acceder desde el host.
@@ -30,7 +26,7 @@ El reenvío de puertos en VirtualBox permite acceder a servicios dentro de una m
    - En **IP del invitado**, puedes usar `10.0.2.15` (IP por defecto de NAT).
    - En **Puerto del invitado**, introduce el puerto en la máquina virtual al que deseas redirigir el tráfico (por ejemplo, el puerto 80 para un servidor web o el 22 para SSH).
 
-7. **Guardar y reiniciar la máquina virtual:**
+4. **Guardar y reiniciar la máquina virtual:**
    - Una vez configurado el reenvío de puertos, guarda los cambios y reinicia la máquina virtual para que la nueva regla surta efecto.
 
 ## Ejemplo de configuración
@@ -47,8 +43,10 @@ Con esta configuración, cualquier tráfico dirigido a `localhost:8080` en el si
 
 ## Comprobación
 
-Para comprobar que el reenvío de puertos funciona, abre un navegador en tu máquina host y accede a `http://localhost:<puerto del anfitrión>`. Si el servidor en la VM está correctamente configurado, deberías ver la respuesta del servidor web.
+¿Como puedo saber si tengo los puertos abiertos? habréis dado esto en redes de primero pero os dejo aquí un pequeño recordatorio
 
----
+comandos para averiguar puertos abiertos
 
-¡Y eso es todo! Ahora puedes acceder a servicios que corren en la máquina virtual desde tu máquina host usando reenvío de puertos.
+Si ejecutáis esto en la máquina virtual donde acabáis de instalar el servicio FTP debería daros como resultado que el puerto 21 está abierto
+
+Si ejecutáis esto en la máquina física después de configurar el reenvío debería daros también que el puerto 21 está abierto
