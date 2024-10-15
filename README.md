@@ -6,6 +6,7 @@
 ###### [Guia FTP vsftp](docs1/vsftp.md)
 ###### [Comandos para obtener información de puertos](docs1/puertos-comandos.md)
 ###### [Reenvio puertos VB](docs1/puertosVB.md)
+###### [Guia Instalación Nginx](docs1/instalacion_nginx.md)
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 ![imagen licencia](/img/licencia.png)
