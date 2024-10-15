@@ -24,11 +24,11 @@ sudo systemctl status nginx
 
 Deberías ver algo como:
 
-```
+`
 nginx.service - A high performance web server and a reverse proxy server
      Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
      Active: active (running) since ...
-```
+`
 
 ## 4. Comprobar Funcionamiento
 Para verificar que Nginx está funcionando correctamente, abre un navegador web y dirígete a la IP o dominio de tu servidor. Si estás trabajando en un servidor local, abre:
@@ -81,10 +81,10 @@ Guarda los cambios y cierra el editor.
 
 ### 5.2 Crear un Archivo de Configuración para un Nuevo Sitio
 
-Supongamos que quieres configurar un sitio web llamado \`mi-sitio.com\`. Primero, crea un archivo en \`sites-available\`:
+Supongamos que quieres configurar un sitio web llamado \`apellido.com\`. Primero, crea un archivo en \`sites-available\`:
 
 ```
-sudo nano /etc/nginx/sites-available/mi-sitio.com
+sudo nano /etc/nginx/sites-available/apellido.com
 ```
 
 Ejemplo básico de configuración para un sitio web:
@@ -92,9 +92,9 @@ Ejemplo básico de configuración para un sitio web:
 ```nginx
 server {
     listen 80;
-    server_name mi-sitio.com www.mi-sitio.com;
+    server_name apellido.com www.apellido.com;
 
-    root /var/www/mi-sitio;
+    root /var/www/apellido;
     index index.html index.htm;
 
     location / {
@@ -114,14 +114,14 @@ server {
 }
 ```
 
-Este archivo define que Nginx escuchará en el puerto 80 para el dominio \`mi-sitio.com\` y servirá archivos desde el directorio \`/var/www/mi-sitio\`.
+Este archivo define que Nginx escuchará en el puerto 80 para el dominio \`apellido.com\` y servirá archivos desde el directorio \`/var/www/apellido\`.
 
 ### 5.3 Habilitar el Sitio
 
 Ahora, crea un enlace simbólico en el directorio \`sites-enabled\`:
 
 ```
-sudo ln -s /etc/nginx/sites-available/mi-sitio.com /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/apellido.com /etc/nginx/sites-enabled/
 ```
 
 ## 6. Probar la Configuración
@@ -152,15 +152,15 @@ sudo systemctl reload nginx
 Asegúrate de que los archivos del sitio web tengan los permisos correctos. Crea el directorio del sitio y asigna los permisos:
 
 ```
-sudo mkdir -p /var/www/mi-sitio
-sudo chown -R $USER:$USER /var/www/mi-sitio
-sudo chmod -R 755 /var/www/mi-sitio
+sudo mkdir -p /var/www/apellido
+sudo chown -R $USER:$USER /var/www/apellido
+sudo chmod -R 755 /var/www/apellido
 ```
 
 Coloca un archivo \`index.html\` para probar:
 
 ```
-echo "<h1>Hola desde mi-sitio.com</h1>" | sudo tee /var/www/mi-sitio/index.html
+echo "<h1>Hola desde el sitio de apellido</h1>" | sudo tee /var/www/apellido/index.html
 ```
 
 ## 9. Configurar el Firewall (Opcional)
@@ -171,22 +171,6 @@ Si tienes \`ufw\` (firewall de Ubuntu) activado, deberías permitir el tráfico 
 sudo ufw allow 'Nginx Full'
 ```
 
-## 10. Configuración SSL (Opcional)
-
-Si deseas asegurar tu sitio con HTTPS, puedes usar Certbot para obtener un certificado SSL gratuito de Let's Encrypt. Primero, instala Certbot y el complemento para Nginx:
-
-```
-sudo apt install certbot python3-certbot-nginx -y
-```
-
-Luego, genera el certificado para tu dominio:
-
-```
-sudo certbot --nginx -d mi-sitio.com -d www.mi-sitio.com
-```
-
-Certbot ajustará automáticamente la configuración de Nginx para habilitar HTTPS.
-
 ## Conclusión
 
-Con este manual, has instalado Nginx, comprobado su funcionamiento, configurado un sitio web básico y habilitado HTTPS si es necesario. Nginx es extremadamente flexible y ofrece muchas otras opciones de configuración, como balanceo de carga, caché y proxy inverso, que puedes explorar según tus necesidades.
+Con este manual, has instalado Nginx, comprobado su funcionamiento y configurado un sitio web básico. Nginx es extremadamente flexible y ofrece muchas otras opciones de configuración, como balanceo de carga, caché y proxy inverso, que puedes explorar según tus necesidades.
