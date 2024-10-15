@@ -24,11 +24,11 @@ sudo systemctl status nginx
 
 Deberías ver algo como:
 
-`
+<pre>
 nginx.service - A high performance web server and a reverse proxy server
      Loaded: loaded (/lib/systemd/system/nginx.service; enabled; vendor preset: enabled)
      Active: active (running) since ...
-`
+</pre>
 
 ## 4. Comprobar Funcionamiento
 Para verificar que Nginx está funcionando correctamente, abre un navegador web y dirígete a la IP o dominio de tu servidor. Si estás trabajando en un servidor local, abre:
@@ -134,10 +134,10 @@ sudo nginx -t
 
 Si todo está correcto, deberías ver:
 
-```
+<pre>
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
-```
+</pre>
 
 ## 7. Reiniciar Nginx
 
