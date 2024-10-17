@@ -7,6 +7,7 @@
 ###### [Comandos para obtener información de puertos](docs1/puertos-comandos.md)
 ###### [Reenvio puertos VB](docs1/puertosVB.md)
 ###### [Guia Instalación Nginx](docs1/instalacion_nginx.md)
+###### [Guia Instalación Apache en ubuntu 22](docs1/guia_instalacion_apache_ubuntu.md)
 
 --------------------------------------------------------------------------------------------------------------------------------------------
 ![imagen licencia](/img/licencia.png)
