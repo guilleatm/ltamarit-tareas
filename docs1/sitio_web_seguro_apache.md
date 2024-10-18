@@ -20,9 +20,13 @@ Para que nuestro servidor pueda servir páginas seguras con el protocolo https, 
 
 Inicialmente, el cliente deberá aceptar el certificado del servidor, ya que generaremos un certificado autofirmado. Si queremos evitarlo, deberíamos contratar un certificado a una entidad certificadora confiable, pero tiene un coste que no merece la pena soportar en un entorno educativo. Para generar nuestro certificado autofirmado, ejecutaremos el comando:
 
-$sudo make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/ssl/certs/apache2.pem
+```$sudo make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/ssl/certs/apache2.pem```
 
-Durante la ejecución de comando make-ssl-cert, quizás nos pregunte algunas sencillas preguntas como el nombre del servidor, etc. Podemos poner nombre de servidor websegura.sercamp.org y dejar en blanco el nombre alternativo. Después se creará el archivo /etc/ssl/certs/apache.pem que contiene las claves que permitirán al servidor utilizar cifrado asimétrico (compruebalo).
+Durante la ejecución de comando make-ssl-cert, quizás nos pregunte algunas sencillas preguntas como el nombre del servidor, etc. Podemos poner nombre de servidor websegura.sercamp.org y dejar en blanco el nombre alternativo. Después se creará el archivo
+
+`/etc/ssl/certs/apache.pem`
+
+que contiene las claves que permitirán al servidor utilizar cifrado asimétrico (compruebalo).
 
 El siguiente paso será configurar un servidor virtual para que utilice dicho certificado.
 
@@ -43,10 +47,10 @@ Una vez que tienes el certificado, lo instalas en tu servidor Apache.
 
    Primero crearemos una carpeta de nombre 'websegura' dentro de '/var/www/html'.
 
-   $sudo mkdir /var/www/html/websegura/
+   ```$sudo mkdir /var/www/html/websegura/```
 
-Dentro de esta carpeta crea un index.html dando un mensaje de bienvenida a una zona segura. Dicha carpeta será el raíz de documentos (DocumentRoot) de nuestro servidor virtual
-seguro, de modo que todo lo que coloquemos en dicha carpeta deba ser accedido vía 'https'. Eso lo indicaremos más adelante mediante el parámetro SSLRequireSSL.
+   Dentro de esta carpeta crea un index.html dando un mensaje de bienvenida a una zona segura. Dicha carpeta será el raíz de documentos (DocumentRoot) de nuestro servidor virtual
+   seguro, de modo que todo lo que coloquemos en dicha carpeta deba ser accedido vía 'https'. Eso lo indicaremos más adelante mediante el parámetro SSLRequireSSL.
 
    Edita o crea el archivo de configuración de tu dominio en `/etc/apache2/sites-available/`. Por ejemplo, si tu sitio es `websegura.sercamp.org`, podrías crear o modificar el archivo `websegura.conf`:
 
