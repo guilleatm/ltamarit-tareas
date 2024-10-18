@@ -35,26 +35,26 @@ Una vez que tienes el certificado, lo instalas en tu servidor Apache.
 
 2. **Crear un VirtualHost seguro en Apache**:
 
-   Edita o crea el archivo de configuración de tu dominio en `/etc/apache2/sites-available/`. Por ejemplo, si tu sitio es `ejemplo.com`, podrías crear o modificar el archivo `ejemplo.com-le-ssl.conf`:
+   Edita o crea el archivo de configuración de tu dominio en `/etc/apache2/sites-available/`. Por ejemplo, si tu sitio es `sercamp.org`, podrías crear o modificar el archivo `sercamp.org-le-ssl.conf`:
 
    ```bash
-   sudo nano /etc/apache2/sites-available/ejemplo.com-le-ssl.conf
+   sudo nano /etc/apache2/sites-available/sercamp.org-le-ssl.conf
    ```
 
    Y añade la configuración del VirtualHost con SSL habilitado:
 
    ```apache
    <VirtualHost *:443>
-       ServerName www.ejemplo.com
-       ServerAlias ejemplo.com
+       ServerName www.websegura.sercamp.org
+       ServerAlias webegura.sercamp.org
 
-       DocumentRoot /var/www/ejemplo.com
+       DocumentRoot /var/www/websegura
 
        SSLEngine on
-       SSLCertificateFile /etc/letsencrypt/live/ejemplo.com/fullchain.pem
-       SSLCertificateKeyFile /etc/letsencrypt/live/ejemplo.com/privkey.pem
+       SSLCertificateFile /etc/letsencrypt/live/websegura.sercamp.org/fullchain.pem
+       SSLCertificateKeyFile /etc/letsencrypt/live/websegura.sercamp.org/privkey.pem
 
-       <Directory /var/www/ejemplo.com>
+       <Directory /var/www/websegura>
            Options Indexes FollowSymLinks
            AllowOverride All
            Require all granted
@@ -69,40 +69,10 @@ Una vez que tienes el certificado, lo instalas en tu servidor Apache.
    - **SSLCertificateKeyFile**: Es la clave privada del certificado.
    - El puerto `443` es el puerto estándar para HTTPS.
 
-3. **Forzar HTTPS (Opcional, pero recomendado)**:
-
-   Para redirigir todo el tráfico HTTP a HTTPS, crea o edita la configuración del puerto 80 en el archivo `ejemplo.com.conf`:
-
-   ```apache
-   <VirtualHost *:80>
-       ServerName www.ejemplo.com
-       ServerAlias ejemplo.com
-       Redirect permanent / https://www.ejemplo.com/
-   </VirtualHost>
-   ```
-
-   Esto asegura que cualquier usuario que acceda a tu sitio usando HTTP sea redirigido automáticamente a la versión segura (HTTPS).
-
-### 3. Reiniciar Apache
+### 2. Reiniciar Apache
 
 Después de hacer estos cambios, reinicia el servicio Apache para que los cambios surtan efecto:
 
 ```bash
 sudo systemctl restart apache2
 ```
-
-### 4. Habilitar HSTS (Opcional, pero recomendado)
-
-**HSTS** (HTTP Strict Transport Security) obliga a los navegadores a usar siempre HTTPS para tu sitio. Esto se hace añadiendo un encabezado en la configuración del sitio.
-
-Edita tu archivo `ejemplo.com-le-ssl.conf` y añade esta línea dentro del bloque `<VirtualHost *:443>`:
-
-```apache
-Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-```
-
-Esto le dice al navegador que use solo HTTPS para tu sitio por el próximo año (31,536,000 segundos).
-
-## Conclusión
-
-Configurar un sitio web seguro implica usar HTTPS con un certificado SSL/TLS, redirigir el tráfico de HTTP a HTTPS y, opcionalmente, habilitar características como HSTS para una mayor protección. Al seguir estos pasos en Apache, tu sitio estará protegido contra la mayoría de los ataques que se producen durante la transmisión de datos.
