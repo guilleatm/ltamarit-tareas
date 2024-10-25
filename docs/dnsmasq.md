@@ -42,7 +42,7 @@ En el cliente hago un nslookup a alguno de los registros que he dado de alta
 
 ![Imagen dnsmasq](/img/dnsmasq3.png)
 
-Aquí dejo también varios enlaces de la instalación y configuración de dnsmasq, no se trata de que sigas al pie de la letra uno de ellos, sino de que mires en esta tarea lo que yo te pido y busques en cualquiera de ellos (o en la red) cómo hacerlo.
+Aquí dejo también varios enlaces de la instalación y configuración de dnsmasq, la versión del S.O en estos enlaces es más antigua ya depende de la distribución que tengais cada uno, no se trata de que sigas al pie de la letra uno de ellos, sino de que mires en esta tarea lo que yo te pido y busques en cualquiera de ellos (o en la red) cómo hacerlo.
 
 http://recursostic.educacion.es/observatorio/web/gl/software/software-general/638-servidor-dns-sencillo-en-linux-con-dnsmasq
 
