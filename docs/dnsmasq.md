@@ -3,9 +3,9 @@ MUY IMPORTANTE: para realizar esta práctica NO UTILICES la misma máquina que h
 #### Guía rápida para instalar dnsmasq
 Tarea realizada con un Ubuntu Server 22.04 como servidor dns (IP 192.168.20.7) y Ubuntu Desktop 22.04 como cliente dns (IP 192.168.20.50)
 
-Compruebo que tengo el cliente y y el servidor en la misma red RedNat, configurados ambos con una ip estática
+Compruebo que tengo el cliente y el servidor en la misma red RedNat, configurados ambos con una ip estática
 
-Instalo
+##### PASO 1. Instalo
 
 ```sudo apt update```
 ```sudo apt install dnsmasq```
@@ -18,6 +18,8 @@ Al hacer esto compruebo que el dnsmasq da un error porque escucha en el puerto 5
 
 ```sudo systemctl mask systemd-resolved```
 
+##### PASO 2. Arranco
+
 una vez desactivado arranco dnsmasq
 
 ``` sudo systemctl start dnsmasq```
@@ -27,6 +29,8 @@ compruebo status
 ``` sudo systemctl status dnsmasq```
 
 ![Imagen dnsmasq](/img/dnsmasq1.png)
+
+##### PASO 3. Hago maestro al servidor dnsmasq
 
 Edita el archivo /etc/dnsmasq.conf y añade un dominio personalizado que será “asir.org”
 
@@ -44,27 +48,31 @@ reinicio el servidor dnsmasq
 
 ``` sudo systemctl restart dnsmasq```
 
+##### PASO 4. Compruebo
+
 Voy al cliente y modifico su servidor DNS para que sea el 192.168.20.7 que acabo de configurar
 
 En el cliente hago un nslookup a alguno de los registros que he dado de alta
 
 ![Imagen dnsmasq](/img/dnsmasq3.png)
 
-Si quieres puedes configurar el servidor dhcp del dnsmasq para que de direcciones en el rango 192.168.20.100-192.168.20.110.
+##### PASO 5. Activo el servidor DHCP del dnsmasq
 
-añade la linea:
+Si quieres puedes configurar el servidor dhcp del dnsmasq para que dé direcciones en el rango 192.168.20.100-192.168.20.110.
+
+para ello añade la linea:
 
 dhcp-range=192.168.20.100,192.168.20.110,24h
 
 Después de configurar reinicia el servicio
 
-Aquí dejo también varios enlaces de la instalación y configuración de dnsmasq, la versión del S.O en estos enlaces es más antigua ya depende de la distribución que tengais cada uno, no se trata de que sigais al pie de la letra uno de ellos, sino de que mireis en esta tarea lo que pido y busqueis en cualquiera de ellos (o en la red) cómo hacerlo.
+Aquí dejo también varios enlaces de la instalación y configuración de dnsmasq, la versión del S.O en estos enlaces es más antigua ya depende de la distribución que tengáis cada uno, no se trata de que seguir al pie de la letra uno de ellos, sino de mirar en esta tarea lo que pido y buscar en cualquiera de ellos (o en la red) cómo hacerlo.
 
-http://recursostic.educacion.es/observatorio/web/gl/software/software-general/638-servidor-dns-sencillo-en-linux-con-dnsmasq
+- http://recursostic.educacion.es/observatorio/web/gl/software/software-general/638-servidor-dns-sencillo-en-linux-con-dnsmasq
 
-https://www.guia-ubuntu.com/index.php/Dnsmasq,_servidor_DNS_y_DHCP
+- https://www.guia-ubuntu.com/index.php/Dnsmasq,_servidor_DNS_y_DHCP
 
-https://wiki.archlinux.org/index.php/Dnsmasq_(Espa%C3%B1ol)
+- https://wiki.archlinux.org/index.php/Dnsmasq_(Espa%C3%B1ol)
 
 #### ACTIVIDAD 1
 
