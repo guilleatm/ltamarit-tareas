@@ -28,7 +28,15 @@ compruebo status
 
 ![Imagen dnsmasq](/img/dnsmasq1.png)
 
-Modifico el archivo hosts del servidor para hacer el dns master llamado asir.org
+Edita el archivo /etc/dnsmasq.conf y añade un dominio personalizado que será “asir.org”
+
+domain=asir.org
+
+descomenta
+
+expand-host
+
+Modifico el archivo /etc/hosts del servidor para hacer el dns master
 
 ![Imagen dnsmasq](/img/dnsmasq2.png)
 
@@ -42,7 +50,15 @@ En el cliente hago un nslookup a alguno de los registros que he dado de alta
 
 ![Imagen dnsmasq](/img/dnsmasq3.png)
 
-Aquí dejo también varios enlaces de la instalación y configuración de dnsmasq, la versión del S.O en estos enlaces es más antigua ya depende de la distribución que tengais cada uno, no se trata de que sigas al pie de la letra uno de ellos, sino de que mires en esta tarea lo que yo te pido y busques en cualquiera de ellos (o en la red) cómo hacerlo.
+Si quieres puedes configurar el servidor dhcp del dnsmasq para que de direcciones en el rango 192.168.20.100-192.168.20.110.
+
+añade la linea:
+
+dhcp-range=192.168.20.100,192.168.20.110,24h
+
+Después de configurar reinicia el servicio
+
+Aquí dejo también varios enlaces de la instalación y configuración de dnsmasq, la versión del S.O en estos enlaces es más antigua ya depende de la distribución que tengais cada uno, no se trata de que sigais al pie de la letra uno de ellos, sino de que mireis en esta tarea lo que pido y busqueis en cualquiera de ellos (o en la red) cómo hacerlo.
 
 http://recursostic.educacion.es/observatorio/web/gl/software/software-general/638-servidor-dns-sencillo-en-linux-con-dnsmasq
 
@@ -76,6 +92,8 @@ Arranca el servidor Dnsmasq
 Solicita desde el cliente una petición por ejemplo nslookup www.iescamp.es
 
 ##### PASO 4.
+Convierte ahora el servidor dnsmask en maestro:
+
 Convierte ahora el servidor dnsmask en maestro:
 
 - añade un dominio personalizado que será “asir.org”
