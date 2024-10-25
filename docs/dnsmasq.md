@@ -1,28 +1,45 @@
 ### dnsmasq
 MUY IMPORTANTE: para realizar esta práctica NO UTILICES la misma máquina que has utilizado para instalar bind9. No puedes tener dos servidores DNS funcionando en la red, sólo obtendrás problemas
-#### Cómo instalar dnsmasq
+#### Guía rápida para instalar dnsmasq
 Tarea realizada con un Ubuntu Server 22.04 como servidor dns (IP 192.168.20.7) y Ubuntu Desktop 22.04 como cliente dns (IP 192.168.20.50)
-##### PASO 0.
+
 Compruebo que tengo el cliente y y el servidor en la misma red RedNat, configurados ambos con una ip estática
-##### Instalar dnsmasq
-sudo apt update
-sudo apt install dnsmasq
+
+Instalo
+
+```sudo apt update```
+```sudo apt install dnsmasq```
+
 Al hacer esto compruebo que el dnsmasq da un error porque escucha en el puerto 53 y ya tiene un servicio escuchando en ese puerto asi que desactivo el servicio
 
 ```sudo systemctl stop systemd-resolved```
+
 ```sudo systemctl disable systemd-resolved```
+
 ```sudo systemctl mask systemd-resolved```
+
 una vez desactivado arranco dnsmasq
+
 ``` sudo systemctl start dnsmasq```
+
 compruebo status
+
 ``` sudo systemctl status dnsmasq```
+
 ![Imagen dnsmasq](/img/dnsmasq1.png)
+
 Modifico el archivo hosts del servidor para hacer el dns master llamado asir.org
+
 ![Imagen dnsmasq](/img/dnsmasq2.png)
+
 reinicio el servidor dnsmasq
+
 ``` sudo systemctl restart dnsmasq```
+
 Voy al cliente y modifico su servidor DNS para que sea el 192.168.20.7 que acabo de configurar
+
 En el cliente hago un nslookup a alguno de los registros que he dado de alta
+
 ![Imagen dnsmasq](/img/dnsmasq3.png)
 
 Aquí dejo también varios enlaces de la instalación y configuración de dnsmasq, no se trata de que sigas al pie de la letra uno de ellos, sino de que mires en esta tarea lo que yo te pido y busques en cualquiera de ellos (o en la red) cómo hacerlo.
