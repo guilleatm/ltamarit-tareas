@@ -4,6 +4,7 @@
 
 ##### GUIAS PARA REALIZAR LAS TAREAS
 ###### [Guia FTP vsftp](docs1/vsftp.md)
+###### [Guia FTP vsftp 22.04](docs1/instalacion_vsftp.md)
 ###### [Comandos para obtener información de puertos](docs1/puertos-comandos.md)
 ###### [Reenvio puertos VB](docs1/puertosVB.md)
 ###### [Guia Instalación Nginx](docs1/instalacion_nginx.md)
