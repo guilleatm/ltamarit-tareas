@@ -170,7 +170,3 @@ Si tienes \`ufw\` (firewall de Ubuntu) activado, deberías permitir el tráfico 
 ```
 sudo ufw allow 'Nginx Full'
 ```
-
-## Conclusión
-
-Con este manual, has instalado Nginx, comprobado su funcionamiento y configurado un sitio web básico. Nginx es extremadamente flexible y ofrece muchas otras opciones de configuración, como balanceo de carga, caché y proxy inverso, que puedes explorar según tus necesidades.
