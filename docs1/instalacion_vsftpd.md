@@ -125,11 +125,3 @@ Puedes probar el servidor FTP usando la herramienta `ftp` desde otro sistema o u
 
 - **Conéctate al servidor** usando la dirección IP de tu servidor Ubuntu y el puerto 21.
 - Usa el nombre de usuario y contraseña de un usuario local para autenticarse.
-
-## Paso 8: Opcional: Habilitar Usuarios Virtuales
-
-Si necesitas habilitar usuarios virtuales en lugar de usuarios del sistema, se requieren pasos adicionales como la configuración de una base de datos de usuarios virtuales. Esto queda fuera del alcance de esta guía básica.
-
----
-
-¡Listo! Ahora tienes VSFTPD instalado y configurado en tu servidor Ubuntu 22.04.
