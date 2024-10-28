@@ -31,9 +31,9 @@ Una vez instalado Apache, puedes verificar que esté funcionando abriendo tu nav
 
 Deberías ver la página predeterminada de Apache, lo que indica que el servidor está en funcionamiento. 
 
-```
+`
 It works!
-```
+`
 
 También puedes comprobar que el servicio esté escuchando en el puerto 80 con:
 
@@ -118,7 +118,7 @@ La forma de trabajar entre estos directorios es a través de un enlace simbólic
 4. Habilita el nuevo sitio con el comando:
 
    ```bash
-   sudo a2ensite clientes.conf
+   sudo a2ensite bardetapas.conf
    ```
 
 5. Deshabilita el sitio por defecto (opcional):
@@ -134,7 +134,7 @@ La forma de trabajar entre estos directorios es a través de un enlace simbólic
    ```
 ## 5. Arranque y parada del servidor web apache
 
-Según la versión que tengais podéis hacerlo con
+Según la distribución que tengáis utilizareis diferentes herramientas para manejar los servicios por eso os añado aquí tres formas distintas para arrancar y parar
 `sudo service apache2.start` o
 `sudo /etc/init.d/apache2 start`o `sudo systemctl start apache2.service`
 
