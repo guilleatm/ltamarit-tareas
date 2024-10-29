@@ -35,6 +35,25 @@ Dentro de esta carpeta crea un index.html dando un mensaje de bienvenida a una z
 Dicha carpeta será el raíz de documentos (DocumentRoot) de nuestro servidor virtual seguro, de modo que todo lo que coloquemos en dicha carpeta deba ser accedido vía
 'https'. Eso lo indicaremos más adelante mediante el parámetro SSLRequireSSL.
 
+Después debemos crear el servidor virtual en Apache. Dicho servidor virtual dispondrá de una url de acceso diferente a la de nuestra web principal y será accesible mediante
+https, por tanto tendremos que habilitar SSL e indicar la ruta del archivo que contiene el certificado
+
+Todo ello lo haremos creando un nuevo host virtual tal y como sabemos, pero esta vez en lugar de copiarnos el archivo 000-default.conf nos copiaremos el default-ssl.conf de
+sites-availables
+
+En el archivo de configuración .conf de nuestro nuevo sitio configuraremos:
+
+- ServerAdmin
+- ServerName
+- DocumentRoot
+- SSLCertificateFile., aquí indicaremos cómo se llama el certificado que acabamos de crear:
+
+SSLCertificateFile /etc/ssl/certs/apache2.pem
+
+Comentamos con una # la línea:
+
+#SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
+
 ### 3. Habilitar puerto
 El protocolo https utiliza el puerto 443, por lo tanto, tendremos que habilitar dicho puerto para que Apache lo utilice. Si ya está habilitado el puerto 443, no hacer nada.
 
@@ -44,11 +63,10 @@ Listen 443
 ### 4. Habilitar el módulo ssl del servidor apache:
 ```sudo a2enmod ssl```
 
-### 5. Crear servidor virtual
-Después debemos crear el servidor virtual en Apache. Dicho servidor virtual dispondrá de una url de acceso diferente a la de nuestra web principal y será accesible mediante
-https, por tanto tendremos que habilitar SSL e indicar la ruta del archivo que contiene 
+### 5. Y recargamos apache:
+```$sudo systemctl reload apache2.service```
 
-### 2. Obtener el Certificado SSL
+# 2. Obtener el Certificado SSL EN PROCESO
 
 Ejecuta Certbot con el plugin de Apache para obtener y configurar automáticamente el certificado SSL. Asegúrate de reemplazar tudominio.com con tu nombre de dominio.
 
