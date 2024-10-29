@@ -49,9 +49,9 @@ Let's Encrypt SSL tiene una validez de 90 días, pero Certbot incluye un cron jo
 
 ### Resolución de Problemas Comunes
 
-    Problema de Firewall: Asegúrate de que el firewall permita tráfico en los puertos 80 y 443.
+Problema de Firewall: Asegúrate de que el firewall permita tráfico en los puertos 80 y 443.
 
 ```sudo ufw allow 'Apache Full'```
 
-    Error de Dominio: Asegúrate de que el dominio esté apuntando correctamente a la dirección IP de tu servidor.
+Error de Dominio: Asegúrate de que el dominio esté apuntando correctamente a la dirección IP de tu servidor.
 
