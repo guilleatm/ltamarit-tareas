@@ -59,6 +59,3 @@ Para conectar al servidor desde un cliente FTP, utiliza la dirección IP del ser
 
 - [Documentación de FileZilla Server](https://wiki.filezilla-project.org/Documentation)
 
----
-
-¡Listo! Ahora tienes un servidor FTP con FileZilla Server en funcionamiento.
