@@ -24,6 +24,30 @@ Certbot es una herramienta de Let's Encrypt que facilita la obtención de certif
 
 ```sudo apt install certbot python3-certbot-apache```
 
+El siguiente paso será configurar un servidor virtual para que utilice dicho certificado
+### 2. Crear servidor virtual seguro en apache
+Primero crearemos una carpeta de nombre 'websegura' dentro de '/var/www/html'.
+
+```sudo mkdir /var/www/html/websegura/```
+
+Dentro de esta carpeta crea un index.html dando un mensaje de bienvenida a una zona segura.
+
+Dicha carpeta será el raíz de documentos (DocumentRoot) de nuestro servidor virtual seguro, de modo que todo lo que coloquemos en dicha carpeta deba ser accedido vía
+'https'. Eso lo indicaremos más adelante mediante el parámetro SSLRequireSSL.
+
+### 3. Habilitar puerto
+El protocolo https utiliza el puerto 443, por lo tanto, tendremos que habilitar dicho puerto para que Apache lo utilice. Si ya está habilitado el puerto 443, no hacer nada.
+
+Añadir en /etc/apache2/ports.conf
+Listen 443
+
+### 4. Habilitar el módulo ssl del servidor apache:
+```sudo a2enmod ssl```
+
+### 5. Crear servidor virtual
+Después debemos crear el servidor virtual en Apache. Dicho servidor virtual dispondrá de una url de acceso diferente a la de nuestra web principal y será accesible mediante
+https, por tanto tendremos que habilitar SSL e indicar la ruta del archivo que contiene 
+
 ### 2. Obtener el Certificado SSL
 
 Ejecuta Certbot con el plugin de Apache para obtener y configurar automáticamente el certificado SSL. Asegúrate de reemplazar tudominio.com con tu nombre de dominio.
