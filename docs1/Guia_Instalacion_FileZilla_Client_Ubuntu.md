@@ -64,6 +64,3 @@ Al iniciar FileZilla Client, puedes conectar fácilmente a un servidor FTP, SFTP
 - [Documentación de FileZilla](https://wiki.filezilla-project.org/Documentation)
 - [Soporte de Ubuntu](https://help.ubuntu.com/)
 
----
-
-¡Ya está! Ahora tienes FileZilla Client instalado y listo para usar en Ubuntu 22.04.
