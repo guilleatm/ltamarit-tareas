@@ -30,7 +30,8 @@ Durante la ejecución de comando make-ssl-cert, quizás nos pregunte algunas sen
 que contiene las claves que permitirán al servidor utilizar cifrado asimétrico (compruebalo).
 
 El siguiente paso será configurar un servidor virtual para que utilice dicho certificado.
-### 1. Crear servidor virtual seguro en apache
+
+### 2. Crear servidor virtual seguro en apache
 Primero crearemos una carpeta de nombre 'websegura' dentro de '/var/www'.
 
 ```sudo mkdir /var/www/websegura/```
@@ -45,19 +46,38 @@ https, por tanto tendremos que habilitar SSL e indicar la ruta del archivo que c
 
 Todo ello lo haremos creando un nuevo host virtual tal y como sabemos, pero esta vez en lugar de copiarnos el archivo 000-default.conf nos copiaremos el default-ssl.conf de
 sites-availables
-``` cp /etc/apache/sites-available/default-ssl.conf /etc/apache2/sites-available/websegura.conf
+``` cp /etc/apache/sites-available/default-ssl.conf /etc/apache2/sites-available/websegura.conf```
 
 En el archivo de configuración .conf de nuestro nuevo sitio configuraremos:
 
-- ServerAdmin
-- ServerName
+En el archivo de configuración .conf de nuestro nuevo sitio configuraremos:
 
-- DocumentRoot
+ ```apache
+   <VirtualHost *:443>
+       ServerName www.websegura.sercamp.org
+       ServerAlias websegura.sercamp.org
+
+       DocumentRoot /var/www/websegura
+
+       SSLEngine on
+       SSLCertificateFile /etc/ssl/certs/apache2.pem
+       
+       <Directory /var/www/websegura>
+           Options Indexes FollowSymLinks
+           AllowOverride All
+           Require all granted
+       </Directory>
+
+       ErrorLog ${APACHE_LOG_DIR}/error.log
+       CustomLog ${APACHE_LOG_DIR}/access.log combined
+   </VirtualHost>
+   ```
+
 - SSLCertificateFile., aquí indicaremos cómo se llama el certificado que acabamos de crear:
 
 SSLCertificateFile /etc/ssl/certs/apache2.pem
 
-Comentamos con una # la línea:
+- Comentamos con una # la línea:
 
 #SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
 
