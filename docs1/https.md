@@ -16,19 +16,11 @@ Este documento proporciona una guía paso a paso para habilitar HTTPS en un serv
 - Permisos de Usuario: Asegúrate de tener acceso sudo para ejecutar los comandos necesarios.
 
 Pasos para Instalar HTTPS en Apache
-### 1. Instalar Certbot
 
-Certbot es una herramienta de Let's Encrypt que facilita la obtención de certificados SSL gratuitos.
+### 1. Crear servidor virtual seguro en apache
+Primero crearemos una carpeta de nombre 'websegura' dentro de '/var/www'.
 
-```sudo apt update```
-
-```sudo apt install certbot python3-certbot-apache```
-
-El siguiente paso será configurar un servidor virtual para que utilice dicho certificado
-### 2. Crear servidor virtual seguro en apache
-Primero crearemos una carpeta de nombre 'websegura' dentro de '/var/www/html'.
-
-```sudo mkdir /var/www/html/websegura/```
+```sudo mkdir /var/www/websegura/```
 
 Dentro de esta carpeta crea un index.html dando un mensaje de bienvenida a una zona segura.
 
@@ -54,6 +46,7 @@ Comentamos con una # la línea:
 
 #SSLCertificateKeyFile /etc/ssl/private/ssl-cert-snakeoil.key
 
+
 ### 3. Habilitar puerto
 El protocolo https utiliza el puerto 443, por lo tanto, tendremos que habilitar dicho puerto para que Apache lo utilice. Si ya está habilitado el puerto 443, no hacer nada.
 
@@ -65,6 +58,17 @@ Listen 443
 
 ### 5. Y recargamos apache:
 ```$sudo systemctl reload apache2.service```
+
+### 1. Instalar Certbot
+
+Certbot es una herramienta de Let's Encrypt que facilita la obtención de certificados SSL gratuitos.
+
+```sudo apt update```
+
+```sudo apt install certbot python3-certbot-apache```
+
+El siguiente paso será configurar un servidor virtual para que utilice dicho certificado
+
 
 # 2. Obtener el Certificado SSL EN PROCESO
 
