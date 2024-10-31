@@ -91,12 +91,12 @@ Listen 443
 ### 4. Habilitar el módulo ssl del servidor apache:
 ```sudo a2enmod ssl```
 
-### 4. Habilitar el nuevo sitio con el comando:
+### 5. Habilitar el nuevo sitio con el comando:
 
    ```bash
    sudo a2ensite websegura.conf
    ```
-### 5. Y recargamos apache:
+### 6. Y recargamos apache:
 ```$sudo systemctl reload apache2.service```
 
 Al hacer esto e intentar acceder a nuestra pagina web nos aparecerá el msg de advertencia para que aceptemos los riesgos ya que estamos intentando acceder a un sitio que está certificado por nosotros mismos y no por una entidad certificadora.
