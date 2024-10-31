@@ -91,6 +91,11 @@ Listen 443
 ### 4. Habilitar el módulo ssl del servidor apache:
 ```sudo a2enmod ssl```
 
+### 4. Habilitar el nuevo sitio con el comando:
+
+   ```bash
+   sudo a2ensite websegura.conf
+   ```
 ### 5. Y recargamos apache:
 ```$sudo systemctl reload apache2.service```
 
@@ -104,7 +109,7 @@ Listen 443
 
 
 
-### 1. Instalar Certbot
+### 1. Instalar Certbot EN PROCESO
 
 Certbot es una herramienta de Let's Encrypt que facilita la obtención de certificados SSL gratuitos.
 
@@ -115,7 +120,7 @@ Certbot es una herramienta de Let's Encrypt que facilita la obtención de certif
 El siguiente paso será configurar un servidor virtual para que utilice dicho certificado
 
 
-# 2. Obtener el Certificado SSL EN PROCESO
+# 2. Obtener el Certificado SSL 
 
 Ejecuta Certbot con el plugin de Apache para obtener y configurar automáticamente el certificado SSL. Asegúrate de reemplazar tudominio.com con tu nombre de dominio.
 
