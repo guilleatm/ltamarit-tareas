@@ -1,4 +1,4 @@
-# Guía de Instalación de HTTPS en Apache en Ubuntu 22.04
+# Guía de Instalación HTTPS en Apache. Ubuntu 22.04
 
 Este documento proporciona una guía paso a paso para habilitar HTTPS en un servidor Apache en Ubuntu 22.04 usando un certificado SSL.
 
