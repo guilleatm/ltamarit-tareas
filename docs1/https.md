@@ -94,6 +94,16 @@ Listen 443
 ### 5. Y recargamos apache:
 ```$sudo systemctl reload apache2.service```
 
+
+
+
+
+
+
+
+
+
+
 ### 1. Instalar Certbot
 
 Certbot es una herramienta de Let's Encrypt que facilita la obtención de certificados SSL gratuitos.
