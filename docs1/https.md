@@ -25,7 +25,7 @@ Inicialmente, el cliente deberá aceptar el certificado del servidor, ya que gen
 
 Durante la ejecución de comando make-ssl-cert, quizás nos pregunte algunas sencillas preguntas como el host name. Podemos poner nombre de servidor websegura.sercamp.org y dejar en blanco el nombre alternativo. Después se creará el archivo
 
-`/etc/ssl/certs/apache.pem`
+`/etc/ssl/certs/apache2.pem`
 
 que contiene las claves que permitirán al servidor utilizar cifrado asimétrico (compruebalo).
 
@@ -46,6 +46,7 @@ https, por tanto tendremos que habilitar SSL e indicar la ruta del archivo que c
 
 Todo ello lo haremos creando un nuevo host virtual tal y como sabemos, pero esta vez en lugar de copiarnos el archivo 000-default.conf nos copiaremos el default-ssl.conf de
 sites-availables
+
 ``` cp /etc/apache/sites-available/default-ssl.conf /etc/apache2/sites-available/websegura.conf```
 
 En el archivo de configuración .conf de nuestro nuevo sitio configuraremos:
@@ -99,4 +100,4 @@ Listen 443
 ### 6. Y recargamos apache:
 ```$sudo systemctl reload apache2.service```
 
-Al hacer esto e intentar acceder a nuestra pagina web nos aparecerá el msg de advertencia para que aceptemos los riesgos ya que estamos intentando acceder a un sitio que está certificado por nosotros mismos y no por una entidad certificadora.
+Al hacer esto e intentar acceder a nuestra pagina web nos aparecerá el msg de advertencia para que aceptemos los riesgos ya que estamos intentando acceder a un sitio que está firmado por nosotros mismos y no por una entidad certificadora.
