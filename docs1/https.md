@@ -16,7 +16,20 @@ Este documento proporciona una guía paso a paso para habilitar HTTPS en un serv
 - Permisos de Usuario: Asegúrate de tener acceso sudo para ejecutar los comandos necesarios.
 
 Pasos para Instalar HTTPS en Apache
+### 1. Obtener un Certificado SSL/TLS
+Para que nuestro servidor pueda servir páginas seguras con el protocolo https, necesita un certificado. Dicho certificado permitirá que nuestro servidor utilice cifrado asimétrico para intercambiar las claves de cifrado con los clientes, antes de iniciar una trasmisión segura de información.
 
+Inicialmente, el cliente deberá aceptar el certificado del servidor, ya que generaremos un certificado autofirmado. Si queremos evitarlo, deberíamos contratar un certificado a una entidad certificadora confiable, pero tiene un coste que no merece la pena soportar en un entorno educativo. Para generar nuestro certificado autofirmado, ejecutaremos el comando:
+
+```$sudo make-ssl-cert /usr/share/ssl-cert/ssleay.cnf /etc/ssl/certs/apache2.pem```
+
+Durante la ejecución de comando make-ssl-cert, quizás nos pregunte algunas sencillas preguntas como el host name. Podemos poner nombre de servidor websegura.sercamp.org y dejar en blanco el nombre alternativo. Después se creará el archivo
+
+`/etc/ssl/certs/apache.pem`
+
+que contiene las claves que permitirán al servidor utilizar cifrado asimétrico (compruebalo).
+
+El siguiente paso será configurar un servidor virtual para que utilice dicho certificado.
 ### 1. Crear servidor virtual seguro en apache
 Primero crearemos una carpeta de nombre 'websegura' dentro de '/var/www'.
 
@@ -32,11 +45,13 @@ https, por tanto tendremos que habilitar SSL e indicar la ruta del archivo que c
 
 Todo ello lo haremos creando un nuevo host virtual tal y como sabemos, pero esta vez en lugar de copiarnos el archivo 000-default.conf nos copiaremos el default-ssl.conf de
 sites-availables
+``` cp /etc/apache/sites-available/default-ssl.conf /etc/apache2/sites-available/websegura.conf
 
 En el archivo de configuración .conf de nuestro nuevo sitio configuraremos:
 
 - ServerAdmin
 - ServerName
+
 - DocumentRoot
 - SSLCertificateFile., aquí indicaremos cómo se llama el certificado que acabamos de crear:
 
