@@ -6,11 +6,11 @@ El servidor es el servidor Linux con una IP fija, la IP ha de ser acorde con tu 
 
 ### PASO 1. Instalar bind en el servidor.
 ```
-apt-get install bind9
+apt install bind9
 ```
 Recuerda: en ocasiones aparecen problemas en la instalación de paquetes porque no tenemos actualizada la base de datos:
 ```
-apt-get update
+apt update
 ```
 ### PASO 2. Configurar archivos de bind9
 
@@ -127,9 +127,9 @@ Distribuciones anteriores a Ubuntu 20:
 
 Ubuntu 20, 22:
 
-- Arranque: `service named start`
-- Parada: `service named stop`
-- Reinicio: ` service named restart`
+- Arranque: `service named start` o bien `systemctl named start`
+- Parada: `service named stop` o bien `systemctl named stop`
+- Reinicio: ` service named restart` o bien `systemctl named restart`
  
 ### PASO 6. Indicamos a nuestro servidor Linux que su servidor DNS es él mismo.
 
