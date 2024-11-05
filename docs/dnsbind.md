@@ -125,11 +125,11 @@ Distribuciones anteriores a Ubuntu 20:
 - Parada: /etc/init.d/bind9 stop
 - Reinicio: /etc/init.d/bind9 restart
 
-Ubuntu 20:
+Ubuntu 20, 22:
 
-- Arranque: `/etc/init.d/named start` o bien `service named start`
-- Parada: `/etc/init.d/named stop` o bien `service named stop`
-- Reinicio: `/etc/init.d/named restart` o bien ` service named restart`
+- Arranque: `service named start`
+- Parada: `service named stop`
+- Reinicio: ` service named restart`
  
 ### PASO 6. Indicamos a nuestro servidor Linux que su servidor DNS es él mismo.
 
