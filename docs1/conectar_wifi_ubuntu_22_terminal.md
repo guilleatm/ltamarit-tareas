@@ -1,5 +1,5 @@
 
-# Instrucciones para Conectar a una Red Inalámbrica en Ubuntu 22.04 desde la Terminal
+# Conectar a una Red Inalámbrica Ubuntu 22.04 Desktop desde la Terminal
 
 ---
 
