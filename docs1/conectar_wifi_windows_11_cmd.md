@@ -1,95 +1,23 @@
 
-# Instrucciones para Conectar a una Red Inalámbrica en Windows 11 desde la Línea de Comandos
+# Instrucciones para Conectar a una Red Inalámbrica en Windows11
 
-Este documento ofrece instrucciones detalladas para conectarse a una red Wi-Fi en Windows 11 utilizando la línea de comandos (CMD).
+### 1. Abrir la Configuración de Red
 
----
+1. Haz clic en el icono de **Red** o **Wi-Fi** en la esquina inferior derecha de la barra de tareas.
+2. Se abrirá un panel con las redes Wi-Fi disponibles. Haz clic en **Red e Internet** o selecciona **Configuración de red e Internet**.
 
-## Prerrequisitos
+### 2. Seleccionar una Red Wi-Fi
 
-- Asegúrate de que tu dispositivo tenga una tarjeta de red inalámbrica y que esté activada.
-- Abre la línea de comandos con privilegios de administrador para evitar problemas de permisos en algunos comandos.
+1. Dentro del menú de configuración de **Red e Internet**, selecciona **Wi-Fi** en el panel izquierdo.
+2. Asegúrate de que el Wi-Fi esté activado. Luego haz clic en **Mostrar redes disponibles**.
 
-## Pasos para Conectar a una Red Wi-Fi
+### 3. Conectarse a la Red
 
-### 1. Verificar el Estado de la Interfaz Wi-Fi
-
-Para comprobar el estado de tu adaptador inalámbrico, abre la línea de comandos y ejecuta:
-
-```cmd
-netsh interface show interface
-```
-
-Busca una interfaz de tipo `Wi-Fi`. Si el estado es `Desconectado` o `Deshabilitado`, asegúrate de habilitar el adaptador antes de proceder.
-
-### 2. Listar Redes Wi-Fi Disponibles
-
-Para ver las redes Wi-Fi disponibles, ejecuta el siguiente comando:
-
-```cmd
-netsh wlan show networks
-```
-
-Este comando mostrará todas las redes disponibles junto con el nombre (SSID) y el tipo de seguridad.
-
-### 3. Crear un Perfil de Red Wi-Fi
-
-Si es la primera vez que te conectas a esta red, deberás crear un perfil. Usa el siguiente comando, reemplazando `SSID` y `contraseña` con el nombre de la red y la clave de acceso:
-
-```cmd
-netsh wlan add profile filename="C:\Ruta\al\perfil.xml"
-```
-
-Alternativamente, puedes conectar directamente sin un perfil (esto requiere ejecutar con permisos elevados):
-
-```cmd
-netsh wlan connect name="SSID" ssid="SSID" keyMaterial="contraseña"
-```
-
-**Ejemplo:**
-
-```cmd
-netsh wlan connect name="MiRedWiFi" ssid="MiRedWiFi" keyMaterial="MiContraseñaSegura"
-```
+1. En la lista de redes disponibles, selecciona la red a la que deseas conectarte.
+2. Haz clic en **Conectar**.
+3. Si es necesario, introduce la **contraseña** de la red y haz clic en **Siguiente**.
 
 ### 4. Confirmar la Conexión
 
-Para confirmar que estás conectado correctamente, ejecuta:
+Una vez conectado, la red debería mostrar el estado de **Conectado**. Puedes verificar tu conexión en **Red e Internet** > **Estado**, donde se muestra la red actual a la que estás conectado.
 
-```cmd
-netsh wlan show interfaces
-```
-
-Este comando mostrará los detalles de la conexión actual, incluyendo el SSID, la intensidad de la señal y otros datos relevantes.
-
----
-
-## Solución de Problemas
-
-- Si recibes un mensaje de error, verifica que el nombre de red y la contraseña sean correctos.
-- Si no puedes conectarte, intenta reiniciar el servicio WLAN con los siguientes comandos:
-
-  ```cmd
-  net stop wlansvc
-  net start wlansvc
-  ```
-
-- Si necesitas desconectarte de una red, usa:
-
-  ```cmd
-  netsh wlan disconnect
-  ```
-
----
-
-## Información Adicional
-
-Para obtener más detalles y opciones avanzadas, puedes consultar la ayuda de `netsh wlan`:
-
-```cmd
-netsh wlan help
-```
-
----
-
-Con estos pasos, deberías poder conectarte a una red Wi-Fi en Windows 11 usando solo la línea de comandos.
