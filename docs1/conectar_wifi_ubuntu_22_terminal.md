@@ -1,8 +1,6 @@
 
 # Instrucciones para Conectar a una Red Inalámbrica en Ubuntu 22.04 desde la Terminal
 
-Este documento proporciona instrucciones paso a paso para conectar a una red Wi-Fi en Ubuntu 22.04 mediante la terminal.
-
 ---
 
 ## Prerrequisitos
@@ -84,7 +82,3 @@ Para obtener más detalles y opciones avanzadas, puedes consultar la ayuda de `n
 ```bash
 nmcli --help
 ```
-
----
-
-¡Con estos pasos deberías poder conectarte a una red Wi-Fi usando solo la terminal en Ubuntu 22.04!
