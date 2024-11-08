@@ -12,7 +12,7 @@
 ###### [Guia Instalación https Apache](docs1/https.md)
 ###### [Guia Instalación Filezilla Server windows](docs1/Guia_Instalacion_FileZilla_Server.md)
 ###### [Guia Instalacion FileZilla Client Ubuntu 22](docs1/Guia_Instalacion_FileZilla_Client_Ubuntu.md)
-###### [Conectar wifi ubuntu_22 Desktop desde terminal](docs1/conectar_wifi_ubuntu_22_terminal.md)
+###### [Conectar wifi ubuntu 22 Desktop desde terminal](docs1/conectar_wifi_ubuntu_22_terminal.md)
 
 
 
