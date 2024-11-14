@@ -1,0 +1,28 @@
+name: Markdown to PDF
+on:
+  push:
+    branches:
+      - main
+    workflow_dispatch:  # Manual trigger
+    # # Paths can be used to only trigger actions when you have edited certain files, such as a file within the /docs directory
+    # paths:
+    #   - 'docs/**.md'
+    #   - 'docs/images/**'
+
+jobs:
+  build-pdf:
+    name: Build PDF
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: baileyjm02/markdown-to-pdf@v1
+        with:
+          input_dir: ./
+          output_dir: pdfs
+          images_dir: ./img
+          image_import: img
+          build_html: false
+      - uses: actions/upload-artifact@v3
+        with:
+          name: pdfs
+          path: pdfs
