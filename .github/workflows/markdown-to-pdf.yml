@@ -20,7 +20,7 @@ jobs:
           input_path: docs
           output_dir: pdfs
           images_dir: ./img
-          image_import: img
+          image_import: ../img
           build_html: false
       - uses: actions/upload-artifact@v3
         with:
